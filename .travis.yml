@@ -1,0 +1,15 @@
+sudo: required
+language: python
+
+services:
+  - docker
+
+env:
+  - DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+
+install:
+  - docker pull $DOCKER_IMAGE
+
+script:
+  - docker run --rm -v `pwd`:/pypy-wheels $DOCKER_IMAGE /pypy-wheels/build.sh
+
