@@ -12,9 +12,9 @@ cd /tmp
 curl -O -L https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
 
 cd /opt
-tar xfv /tmp/$PYPY
+tar xf /tmp/$PYPY
 
-export PATH=/opt/pypy*/bin:$PATH
+export PATH=/opt/pypy-5.8-linux_x86_64-portable/bin:$PATH
 
 pypy -m ensurepip
 pypy -m pip install wheel
