@@ -5,15 +5,17 @@ packages=(
     netifaces
 )
 
+PYPY=pypy-5.8-1-linux_x86_64-portable.tar.bz2
+
 # install pypy
 cd /tmp
-curl -O -L https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.8-1-linux_x86_64-portable.tar.bz2
+curl -O -L https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
 
 cd /opt
-tar xfv /tmp/pypy-5.8-1-linux_x86_64-portable.tar.bz2
+tar xfv /tmp/$PYPY
 
 cd /usr/bin
-ln -s /opt/pypy2-v5.8.0-linux_x86_64-portable/bin/pypy .
+ln -s /opt/pypy*/bin/pypy .
 
 pypy -m ensurepip
 pypy -m pip install wheel
