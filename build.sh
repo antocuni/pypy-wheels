@@ -10,10 +10,10 @@ cd /tmp
 curl -O -L https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.8-1-linux_x86_64-portable.tar.bz2
 
 cd /opt
-tar xfv /tmp/pypy2-v5.8.0-linux64.tar.bz2
+tar xfv /tmp/pypy-5.8-1-linux_x86_64-portable.tar.bz2
 
 cd /usr/bin
-ln -s /opt/pypy2-v5.8.0-linux64/bin/pypy .
+ln -s /opt/pypy2-v5.8.0-linux_x86_64-portable/bin/pypy .
 
 pypy -m ensurepip
 pypy -m pip install wheel
