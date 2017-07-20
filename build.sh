@@ -7,7 +7,7 @@ packages=(
 
 # install pypy
 cd /tmp
-wget https://bitbucket.org/pypy/pypy/downloads/pypy2-v5.8.0-linux64.tar.bz2
+curl -O -L https://bitbucket.org/pypy/pypy/downloads/pypy2-v5.8.0-linux64.tar.bz2
 
 cd /opt
 tar xfv /tmp/pypy2-v5.8.0-linux64.tar.bz2
