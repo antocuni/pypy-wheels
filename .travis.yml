@@ -5,6 +5,10 @@ addons:
   apt:
     packages:
       - curl
+      - gfortran
+      - libblas-dev
+      - liblapack-dev
+
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_9edd802e88c8_key -iv $encrypted_9edd802e88c8_iv -in ./travis/travis.rsa.enc -out ./travis/travis.rsa -d
