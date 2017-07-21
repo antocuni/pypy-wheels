@@ -27,5 +27,6 @@ done
 # done
 
 # build the index
+cd ~/pypy-wheels/
 python build_index.py wheelhouse /tmp/gh-pages
 
