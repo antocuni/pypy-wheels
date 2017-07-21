@@ -8,11 +8,12 @@ packages=(
 # install pypy
 PYPY=pypy2-v5.8.0-linux64
 cd /tmp && curl -O -L https://bitbucket.org/pypy/pypy/downloads/$PYPY.tar.bz2
-cd /opt && tar xfv /tmp/$PYPY.tar.bz2
+cd /opt && tar xf /tmp/$PYPY.tar.bz2
 export PATH=/opt/$PYPY/bin:$PATH
 
 pypy -m ensurepip
-pypy -m pip install wheel py auditwheel
+pypy -m pip install wheel py
+pip3 install --user auditwheel
 
 # Compile wheels
 for PKG in $packages
