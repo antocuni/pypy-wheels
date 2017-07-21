@@ -6,6 +6,7 @@ packages=(
     psutil
     numpy
     scipy
+    pandas
 )
 
 # install pypy
