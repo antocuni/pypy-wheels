@@ -12,7 +12,7 @@ cd /opt && tar xfv /tmp/$PYPY.tar.bz2
 export PATH=/opt/$PYPY/bin:$PATH
 
 pypy -m ensurepip
-pypy -m pip install wheel py
+pypy -m pip install wheel py auditwheel
 
 # Compile wheels
 for PKG in $packages
