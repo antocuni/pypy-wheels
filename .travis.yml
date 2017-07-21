@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
       - curl
+      - patchelf
 
 script:
   - ./build.sh
