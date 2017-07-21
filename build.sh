@@ -3,6 +3,7 @@ set -e -x
 
 packages=(
     netifaces
+    psutil
 )
 
 pwd
