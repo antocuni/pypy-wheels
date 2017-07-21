@@ -6,6 +6,9 @@ addons:
     packages:
       - curl
 
+before_install:
+  - openssl aes-256-cbc -K $encrypted_9edd802e88c8_key -iv $encrypted_9edd802e88c8_iv -in ./travis/travis.rsa.enc -out ./travis/travis.rsa -d
+
 script:
   - ./clone-gh-pages.sh
   - ./build.sh
