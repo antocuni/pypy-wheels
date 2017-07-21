@@ -1,10 +1,6 @@
 import sys
 import py
 
-PACKAGES = [
-    'netifaces',
-]
-
 class IndexBuilder(object):
 
     def __init__(self, wheeldir, outdir):
@@ -14,19 +10,24 @@ class IndexBuilder(object):
 
     def copy_wheels(self):
         for whl in self.wheeldir.visit('*.whl'):
+            print 'Collecting wheel:', whl.basename
             name, version = self.parse(whl)
             self.packages.append(name)
             d = self.outdir.join(name).ensure(dir=True)
             dst = d.join(whl.basename)
             if dst.check(file=False):
                 whl.copy(d)
+            else:
+                print '    already exists, skipping'
 
     def build_index(self):
+        print 'Building index files...'
         self._write_index(self.outdir, 'PyPy Wheel Index', self.packages)
         for pkg in self.packages:
             d = self.outdir.join(pkg)
             wheels = [whl.basename for whl in d.listdir('*.whl')]
             self._write_index(d, 'Links for %s' % pkg, wheels)
+        print 'OK'
 
     def parse(self, f):
         name, version, _ = f.basename.split('-', 2)
