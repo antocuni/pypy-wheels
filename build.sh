@@ -4,6 +4,7 @@ set -e -x
 packages=(
     netifaces
     psutil
+    numpy
 )
 
 # install pypy
