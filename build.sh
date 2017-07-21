@@ -18,6 +18,7 @@ pypy -m pip install wheel py
 pip3 install --user auditwheel
 
 # Compile wheels
+cd
 for PKG in $packages
 do
     pypy -m pip wheel $PKG -w wheelhouse
@@ -30,5 +31,5 @@ done
 
 # build the index
 cd ~/build/antocuni/pypy-wheels/
-python build_index.py wheelhouse /tmp/gh-pages
+python build_index.py ~/wheelhouse /tmp/gh-pages
 
