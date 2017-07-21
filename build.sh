@@ -5,6 +5,7 @@ packages=(
     netifaces
     psutil
     numpy
+    scipy
 )
 
 # install pypy
