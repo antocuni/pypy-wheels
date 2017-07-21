@@ -12,10 +12,9 @@ chmod 600 ./travis/travis.rsa
 eval `ssh-agent -s`
 ssh-add ./travis/travis.rsa
 
-# commit to benchrepo
 cd /tmp/gh-pages
 REPO=`git config remote.origin.url`
-TARGET_BRANCH=benchmarks
+TARGET_BRANCH=gh-pages
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 
 git config push.default simple
