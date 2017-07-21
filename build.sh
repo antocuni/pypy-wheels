@@ -22,6 +22,7 @@ pip3 install --user auditwheel
 cd
 for PKG in "${packages[@]}"
 do
+    pypy -m pip install $PKG
     pypy -m pip wheel $PKG -w wheelhouse
 done
 
