@@ -6,8 +6,6 @@ packages=(
     psutil
 )
 
-pwd
-
 # install pypy
 PYPY=pypy2-v5.8.0-linux64
 cd /tmp && curl -O -L https://bitbucket.org/pypy/pypy/downloads/$PYPY.tar.bz2
@@ -20,7 +18,7 @@ pip3 install --user auditwheel
 
 # Compile wheels
 cd
-for PKG in $packages
+for PKG in "${packages[@]}"
 do
     pypy -m pip wheel $PKG -w wheelhouse
 done
