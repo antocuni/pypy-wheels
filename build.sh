@@ -25,3 +25,7 @@ done
 # for whl in wheelhouse/*.whl; do
 #     auditwheel repair "$whl" -w /pypy-wheels/wheelhouse/
 # done
+
+# build the index
+python build_index.py wheelhouse /tmp/gh-pages
+

@@ -5,8 +5,8 @@ addons:
   apt:
     packages:
       - curl
-      - patchelf
 
 script:
+  - ./clone-gh-pages.sh
   - ./build.sh
-
+  - ./commit-gh-pages.sh
