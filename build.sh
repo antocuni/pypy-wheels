@@ -5,6 +5,8 @@ packages=(
     netifaces
 )
 
+pwd
+
 # install pypy
 PYPY=pypy2-v5.8.0-linux64
 cd /tmp && curl -O -L https://bitbucket.org/pypy/pypy/downloads/$PYPY.tar.bz2
@@ -27,6 +29,6 @@ done
 # done
 
 # build the index
-cd ~/pypy-wheels/
+cd ~/antocuni/pypy-wheels/
 python build_index.py wheelhouse /tmp/gh-pages
 
