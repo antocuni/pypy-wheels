@@ -29,6 +29,6 @@ done
 # done
 
 # build the index
-cd ~/antocuni/pypy-wheels/
+cd ~/build/antocuni/pypy-wheels/
 python build_index.py wheelhouse /tmp/gh-pages
 
