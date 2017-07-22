@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # gcc
-yum -y gcc
+yum install -y gcc
 
 # auditwheels
 yum install -y epel-release
