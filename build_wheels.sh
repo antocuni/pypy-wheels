@@ -3,10 +3,10 @@ set -e -x
 
 packages=(
     netifaces
-    # psutil
-    # numpy
-    # scipy
-    # pandas
+    psutil
+    numpy
+    scipy
+    pandas
 )
 
 pypy -m ensurepip

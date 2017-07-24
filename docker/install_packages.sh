@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # gcc
-yum install -y gcc
+yum install -y gcc blas-devel lapack-devel
 
 # auditwheels
 yum install -y epel-release
