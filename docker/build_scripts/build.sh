@@ -5,7 +5,8 @@
 set -ex
 
 # Python versions to be installed in /opt/$VERSION_NO
-CPYTHON_VERSIONS="2.6.9 2.7.13 3.3.6 3.4.6 3.5.3 3.6.0"
+#CPYTHON_VERSIONS="2.6.9 2.7.13 3.3.6 3.4.6 3.5.3 3.6.0"
+CPYTHON_VERSIONS="3.6.0"
 
 # openssl version to build, with expected sha256 hash of .tar.gz
 # archive
@@ -34,9 +35,9 @@ MANYLINUX1_DEPS="glibc-devel libstdc++-devel glib2-devel libX11-devel libXext-de
 # From: https://github.com/rust-lang/rust/pull/41045
 # The location for version 5 was also removed, so now only the specific release
 # (5.11) can be referenced.
-sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf
-sed -i 's/mirrorlist/#mirrorlist/' /etc/yum.repos.d/*.repo
-sed -i 's/#\(baseurl.*\)mirror.centos.org\/centos\/$releasever/\1vault.centos.org\/5.11/' /etc/yum.repos.d/*.repo
+# sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf
+# sed -i 's/mirrorlist/#mirrorlist/' /etc/yum.repos.d/*.repo
+# sed -i 's/#\(baseurl.*\)mirror.centos.org\/centos\/$releasever/\1vault.centos.org\/5.11/' /etc/yum.repos.d/*.repo
 
 # Get build utilities
 MY_DIR=$(dirname "${BASH_SOURCE[0]}")
