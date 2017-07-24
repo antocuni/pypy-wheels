@@ -10,4 +10,4 @@ ENV PATH="/opt/pypy/bin:${PATH}"
 ADD install_packages.sh /tmp
 RUN /tmp/install_packages.sh
 
-ENTRYPOINT /bin/bash
+

@@ -1,5 +1,4 @@
-# this file is meant to be sourced to get the IMAGE and TAG env variables
+# this file is meant to be sourced to get the IMAGE and TAG env variables; the pwd MUST be the root of the repo
 
-cd "$(dirname "$0")"
 IMAGE=antocuni/pypy-wheels
-TAG=`cat $(git ls-files) | md5sum | head -c 8`
+TAG=`cat $(git ls-files docker) | md5sum | head -c 8`
