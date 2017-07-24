@@ -1,8 +1,6 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-IMAGE=antocuni/pypy-wheel
-TAG=`./get_tag.sh`
 
 echo "Trying to pull $IMAGE:$TAG"
 if ! docker pull $IMAGE:$TAG

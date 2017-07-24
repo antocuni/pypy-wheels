@@ -1,19 +1,19 @@
-sudo: false
+sudo: required
 language: python
+services: docker
 
-addons:
-  apt:
-    packages:
-      - curl
-      - gfortran
-      - libblas-dev
-      - liblapack-dev
-
+env:
+  IMAGE=antocuni/pypy-wheels
+  TAG=`docker/get_tag.sh`
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_9edd802e88c8_key -iv $encrypted_9edd802e88c8_iv -in ./travis/travis.rsa.enc -out ./travis/travis.rsa -d
 
+install:
+  - ./docker/build_image.sh
+
 script:
-  - ./clone-gh-pages.sh
-  - ./build.sh
-  - ./commit-gh-pages.sh
+  - echo $TAG
+  - # ./clone-gh-pages.sh
+  - # ./build.sh
+  - #./commit-gh-pages.sh
