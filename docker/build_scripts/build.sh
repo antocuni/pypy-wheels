@@ -57,8 +57,8 @@ rpm -Uvh --replacepkgs epel-release-5*.rpm
 rm -f epel-release-5*.rpm
 
 # Development tools and libraries
-yum -y install bzip2 make git patch unzip bison yasm diffutils \
-    automake which file cmake28 \
+yum -y install bzip2 make patch unzip bison yasm diffutils \
+    automake which file  \
     kernel-devel-`uname -r` \
     devtoolset-2-binutils devtoolset-2-gcc \
     devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran \
