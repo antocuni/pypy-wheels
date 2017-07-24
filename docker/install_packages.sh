@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# gcc
-yum install -y gcc blas-devel lapack-devel
+# packages needed to build numpy and scipy
+yum install -y gcc gcc-c++ atlas-devel blas-devel lapack-devel
 
 # auditwheels
 yum install -y epel-release
