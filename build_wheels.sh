@@ -9,7 +9,12 @@ packages=(
     # pandas
 )
 
+pypy -m ensurepip
+pypy -m pip install wheel
+
 # Compile wheels
+echo "Compiling wheels..."
+echo
 cd
 for PKG in "${packages[@]}"
 do
@@ -17,10 +22,15 @@ do
     pypy -m pip wheel $PKG -w wheelhouse
 done
 
-# # Bundle external shared libraries into the wheels
-# for whl in wheelhouse/*.whl; do
-#     auditwheel repair "$whl" -w /pypy-wheels/wheelhouse/
-# done
+# Bundle external shared libraries into the wheels
+echo
+echo "Running audiwheel..."
+echo
+mkdir -p /pypy-wheels/wheelhouse/
+for whl in wheelhouse/*.whl; do
+    #auditwheel repair "$whl" -w /pypy-wheels/wheelhouse/
+    cp "$whl" /pypy-wheels/wheelhouse/
+done
 
 # # build the index
 # cd ~/build/antocuni/pypy-wheels/

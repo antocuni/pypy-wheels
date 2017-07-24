@@ -15,7 +15,9 @@ install:
   - ./docker/build_image.sh
 
 script:
-  - echo $TAG
-  - # ./clone-gh-pages.sh
-  - # ./build.sh
-  - #./commit-gh-pages.sh
+  - ./run.sh
+
+after_script:
+  - ./clone-gh-pages.sh
+  - python build_index.py wheelhouse /tmp/gh-pages
+  - ./commit-gh-pages.sh
