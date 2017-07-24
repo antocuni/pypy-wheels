@@ -3,13 +3,15 @@ language: python
 services: docker
 
 env:
-  IMAGE=antocuni/pypy-wheels
-  TAG=`docker/get_tag.sh`
+  # DOCKERPASS
+  - secure: "3aq6zQ9dSGl02PGNvcZeZWT9nzJ89wHOBk67N9u5Kai66WP3daIV8XWvWEt2TW5S9xkyx6fzpJweemL2vZtDT5dZxrL3538xLvCuJxAwYu4AhNrHzPSc1bXIMOARtx9wOpmCu37dMRXrKFmVKsVx70P5PTP+Q7P/WMSKk1KoTHjEb0p9AvnHAyq+rn/c7QovHb3KdysTEjodNOzbPFl4Yr3i7Bt5RLZGRhILUunJnwyqj0GWT0yto3HujYgx4gEelEAwpgpU9AvLjcrfClJRFH2fzS7RTyJKxPODptQKCf4IFGncv2usoYht+4mjTRdq8NtW6h5g9f6vuNr5Ihvf8Bd75ZD8CSipZAaRxlh9ez7CGQWRJeyg1YLyppp5vNn5mBGJMtgDWGZfBm5lP6hcZAv21HEcb15WDCzvv2sv8ejpWIzBCWeZdyE1MXe35w2r7Mr5/6yGVjXQhJJdgyVx2wW57zNsCtdmhik+Eft19JNnIu2b5v3td9E3UdXC7gGAmYWDT6xsUL3Co/qP9ps4vYgze3ZkJyS+1N2zYSL5HgS4QX94WmXFmWGWHzMwYnFcsDfyhefTmWvTkO/HcTRkuoM7xZTsMSIZ4z1Q1gEKIqfObqf1qmwqb824J1K7Kwpcdym1F0ko00Bw+cvjTumKNlv5ZjnuwtROG3DnA5m3iZg="
+
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_9edd802e88c8_key -iv $encrypted_9edd802e88c8_iv -in ./travis/travis.rsa.enc -out ./travis/travis.rsa -d
 
 install:
+  - docker login -u antocuni -p $DOCKERPASS
   - ./docker/build_image.sh
 
 script:

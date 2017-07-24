@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
+. env.sh
 
 echo "Trying to pull $IMAGE:$TAG"
 if ! docker pull $IMAGE:$TAG
