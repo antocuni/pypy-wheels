@@ -28,11 +28,6 @@ echo "Running audiwheel..."
 echo
 mkdir -p /pypy-wheels/wheelhouse/
 for whl in wheelhouse/*.whl; do
-    #auditwheel repair "$whl" -w /pypy-wheels/wheelhouse/
-    cp "$whl" /pypy-wheels/wheelhouse/
+    auditwheel repair --plat linux_x86_64  "$whl" -w /pypy-wheels/wheelhouse/
+    #cp "$whl" /pypy-wheels/wheelhouse/
 done
-
-# # build the index
-# cd ~/build/antocuni/pypy-wheels/
-# python build_index.py ~/wheelhouse /tmp/gh-pages
-
