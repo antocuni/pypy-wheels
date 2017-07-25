@@ -26,6 +26,10 @@ do
 done
 
 # Bundle external shared libraries into the wheels
+#
+# XXX: auditwheel repair doesn't work because of this bug:
+# https://github.com/NixOS/patchelf/issues/128
+# try again when it's fixed
 echo
 echo "Running audiwheel..."
 echo
