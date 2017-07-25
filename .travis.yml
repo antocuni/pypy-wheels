@@ -20,5 +20,5 @@ script:
 
 after_script:
   - ./clone-gh-pages.sh
-  - python build_index.py wheelhouse /tmp/gh-pages
+  - python build_index.py wheelhouse/ubuntu/ /tmp/gh-pages/ubuntu
   - ./commit-gh-pages.sh

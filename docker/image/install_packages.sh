@@ -8,7 +8,7 @@ then
     apt-get install -y curl gcc g++
 
     # needed for numpy and scipy
-    apt-get install gfortran libatlas-dev libblas-dev liblapack-dev
+    apt-get install -y gfortran libatlas-dev libblas-dev liblapack-dev
 else
     # we are on centos
     # packages needed to build numpy and scipy
