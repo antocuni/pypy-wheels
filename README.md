@@ -9,5 +9,5 @@ popular packages such as scipy and numpy.
 To use them, you can invoke pip like this:
 
 ```
-$ pip install --extra-index https://antocuni.github.io/pypy-wheels/ numpy
+$ pip install --extra-index https://antocuni.github.io/pypy-wheels/ubuntu numpy
 ```
