@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# this file is meant to be run inside the antocuni/pypy-wheels docker image
+
 set -e -x
 
 packages=(
@@ -28,6 +31,6 @@ echo "Running audiwheel..."
 echo
 mkdir -p /pypy-wheels/wheelhouse/
 for whl in wheelhouse/*.whl; do
-    auditwheel repair --plat linux_x86_64  "$whl" -w /pypy-wheels/wheelhouse/
-    #cp "$whl" /pypy-wheels/wheelhouse/
+    #auditwheel repair --plat linux_x86_64  "$whl" -w /pypy-wheels/wheelhouse/
+    cp "$whl" /pypy-wheels/wheelhouse/
 done
