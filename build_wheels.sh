@@ -1,8 +1,10 @@
 #!/bin/bash
 
-# this file is meant to be run inside the antocuni/pypy-wheels docker image
+# this file is meant to be run inside the pypywheels docker image
 
 set -e -x
+
+TARGETDIR=/pypy-wheels/wheelhouse/$1
 
 packages=(
     netifaces
@@ -11,9 +13,6 @@ packages=(
     scipy
     pandas
 )
-
-pypy -m ensurepip
-pypy -m pip install wheel
 
 # Compile wheels
 echo "Compiling wheels..."
@@ -25,16 +24,18 @@ do
     pypy -m pip wheel $PKG -w wheelhouse
 done
 
+# copy the wheels to the final directory
+mkdir -p $TARGETDIR
+cp wheelhouse/*.whl $TARGETDIR
+
 # Bundle external shared libraries into the wheels
 #
 # XXX: auditwheel repair doesn't work because of this bug:
 # https://github.com/NixOS/patchelf/issues/128
 # try again when it's fixed
-echo
-echo "Running audiwheel..."
-echo
-mkdir -p /pypy-wheels/wheelhouse/
-for whl in wheelhouse/*.whl; do
-    #auditwheel repair --plat linux_x86_64  "$whl" -w /pypy-wheels/wheelhouse/
-    cp "$whl" /pypy-wheels/wheelhouse/
-done
+# echo
+# echo "Running audiwheel..."
+# echo
+# for whl in wheelhouse/*.whl; do
+#     auditwheel repair --plat linux_x86_64  "$whl" -w $TARGETDIR
+# done

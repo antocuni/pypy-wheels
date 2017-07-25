@@ -17,8 +17,9 @@ function _build_maybe() {
     fi
 }
 
-# build the base image
-_build_maybe base $BASEIMAGE $BASETAG
+# centos6-based build:
+#_build_maybe base pypywheels/centos6-base $BASETAG
+#_build_maybe image pypywheels/centos6 $TAG --build-arg baseimage=pypywheels/centos6-base:$BASETAG
 
-# build the image, based on the proper base image
-_build_maybe image $IMAGE $TAG --build-arg basetag=$BASETAG
+# ubuntu-based build
+_build_maybe image pypywheels/ubuntu14.04 $TAG --build-arg baseimage=ubuntu:14.04
