@@ -13,3 +13,5 @@ cd /opt
 tar xf /tmp/$PYPY
 ln -s $DIR pypy
 
+/opt/pypy/bin/pypy -m ensurepip
+/opt/pypy/bin/pypy -m pip install wheel
