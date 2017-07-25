@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e -x
+
 . docker/env.sh
 
 function _build_maybe() {
