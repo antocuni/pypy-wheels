@@ -38,7 +38,7 @@ class IndexBuilder(object):
             '<html><body><h1>{title}</h1>'.format(title=title)
             ]
         for name in links:
-            line = '<a href="{name}">{name}</a>'.format(name=name)
+            line = '<a href="{name}">{name}</a><br>'.format(name=name)
             lines.append(line)
         lines.append('</body></html>')
         html = '\n'.join(lines)
