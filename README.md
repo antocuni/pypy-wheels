@@ -37,3 +37,24 @@ Plase note that the purpose of this repo is only to provide wheels for the exist
 ## Why not manylinux1 wheels?
 
 Currently, it is not possible to build PyPy on centos5, which is required for manylinux1. Moreover, there are other issues to be fixed fist, such as this one: https://bitbucket.org/pypy/pypy/issues/2617/
+
+## TODO / help wanted
+
+In case you are interested in helping, pull requests are welcome. Here is a
+random list of features which would be nice to have:
+
+1. It is possible that if you fork the repo e create a PR, the travis build
+   will fail because it does not have the rights to do `docker push` after
+   rebuilding the image, and/or `git push gh-pages` after rebuilding the
+   index. We should insert a check and avoid that.
+   
+2. If you want to build a new package, just add it `build_wheels.sh` and make
+   sure it compiles correctly. You might need to `apt-get install` more
+   packages in `docker/image/install_packages.sh`.
+   
+3. If you want to build wheels for `OS/X` or other linux distros, feel free to
+   do so :)
+   
+4. Currently, the build script recompiles every package each time it is
+   run. It would be nice to skip the build in case a wheel for a specific
+   version of a package is already there.
