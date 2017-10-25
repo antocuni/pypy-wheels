@@ -48,6 +48,15 @@ class TestIndexBuilder:
         builder.copy_wheels()
         builder.build_index()
         #
+        # check the main index
         links = find_links(dst.join('index.html'))
-        assert sorted(links) == [('netifaces', 'netifaces'),
-                                 ('numpy', 'numpy')]
+        assert sorted(links) == [
+            ('netifaces', 'netifaces'),
+            ('numpy', 'numpy')
+        ]
+        # check the index for numpy
+        links = find_links(dst.join('numpy/index.html'))
+        assert sorted(links) == [
+            ('numpy-1.1-bla.whl', 'numpy-1.1-bla.whl'),
+            ('numpy-1.2-bla.whl', 'numpy-1.2-bla.whl')
+        ]
