@@ -14,8 +14,10 @@ install:
   - docker --version
   - docker login -u pypywheels -p $DOCKERPASS
   - ./docker/build_image.sh
+  - pip install pytest
 
 script:
+  - py.test scripts
   - ./scripts/run.sh
 
 after_script:
