@@ -6,7 +6,7 @@
 set -e
 
 TARGET=$1
-TARGETDIR=/pypy-wheels/wheelhouse/$TARGETDIR
+TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
 packages=(
     netifaces
@@ -17,7 +17,8 @@ packages=(
 )
 
 # Compile the wheels, for all pypys found inside /opt/
-echo "Compiling wheels..."
+echo "Compiling wheels"
+echo "TARGETDIR: $TARGETDIR"
 echo
 cd
 for PYPY in /opt/pypy-*/bin/pypy
@@ -37,6 +38,8 @@ done
 # copy the wheels to the final directory
 mkdir -p $TARGETDIR
 cp wheelhouse/*.whl $TARGETDIR
+echo "wheels copied:"
+find $TARGETDIR -name '*.whl'
 
 # Bundle external shared libraries into the wheels
 #
