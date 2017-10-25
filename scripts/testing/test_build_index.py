@@ -25,8 +25,8 @@ class TestIndexBuilder:
         src = tmpdir.join('src')
         dst = tmpdir.join('dst')
         #
-        w(src, 'netifaces/netifaces-10.1-bla.whl', 'AAA')
-        w(src, 'numpy/numpy-1.2-bla.whl', 'BBB')
+        w(src, 'netifaces-10.1-bla.whl', 'AAA')
+        w(src, 'numpy-1.2-bla.whl', 'BBB')
         w(dst, 'numpy/numpy-1.1-bla.whl', 'existing 1.1')
         w(dst, 'numpy/numpy-1.2-bla.whl', 'existing 1.2')
         #
@@ -40,9 +40,9 @@ class TestIndexBuilder:
     def test_build_index(self, tmpdir):
         src = tmpdir.join('src')
         dst = tmpdir.join('dst')
-        w(src, 'netifaces/netifaces-10.1-bla.whl', 'AAA')
-        w(src, 'numpy/numpy-1.1-bla.whl', 'BBB')
-        w(src, 'numpy/numpy-1.2-bla.whl', 'CCC')
+        w(src, 'netifaces-10.1-bla.whl', 'AAA')
+        w(src, 'numpy-1.1-bla.whl', 'BBB')
+        w(src, 'numpy-1.2-bla.whl', 'CCC')
         #
         builder = IndexBuilder(src, dst)
         builder.copy_wheels()
