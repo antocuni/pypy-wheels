@@ -1,7 +1,7 @@
 travis/travis.rsa
 travis/travis.rsa.pub
 pypy
-pypy-5.8*
+pypy-*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
