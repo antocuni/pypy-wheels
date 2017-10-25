@@ -8,10 +8,10 @@ TARGETDIR=/pypy-wheels/wheelhouse/$1
 
 packages=(
     netifaces
-    psutil
-    numpy
-    scipy
-    pandas
+    # psutil
+    # numpy
+    # scipy
+    # pandas
 )
 
 # Compile wheels
