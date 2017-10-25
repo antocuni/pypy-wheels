@@ -1,17 +1,37 @@
-# install pypy into /opt/pypy
+#!/bin/bash
 
-PYPY=pypy-5.8-1-linux_x86_64-portable.tar.bz2
-URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
+# install pypy into /opt/pypy*
+ALL_PYPYS=(
+    pypy-5.8-1-linux_x86_64-portable.tar.bz2
+    pypy-5.9-linux_x86_64-portable.tar.bz2
+)
 
-cd /tmp
-if [ ! -f $PYPY ]; then
-    curl -O -L $URL
-fi
-DIR=`tar -tf $PYPY | head -1 | cut -f1 -d"/"`
+function install_pypy() {
+    PYPY=$1
+    echo "Installing $PYPY"
+    URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
 
-cd /opt
-tar xf /tmp/$PYPY
-ln -s $DIR pypy
+    cd /tmp
+    if [ ! -f $PYPY ]; then
+        curl -O -L $URL
+    fi
+    # find the name of the top-level dir inside the tarball
+    DIR=`tar -tf $PYPY | head -1 | cut -f1 -d"/"`
 
-/opt/pypy/bin/pypy -m ensurepip
-/opt/pypy/bin/pypy -m pip install wheel
+    cd /opt
+    tar xf /tmp/$PYPY
+    #
+    # add a symlink to /opt/pypy, so that it always contains the latest
+    # installed pypy
+    ln -sf $DIR pypy
+
+    /opt/$DIR/bin/pypy -m ensurepip
+    /opt/$DIR/bin/pypy -m pip install wheel
+    echo "DONE"
+    echo
+}
+
+for PYPY in "${ALL_PYPYS[@]}"
+do
+    install_pypy $PYPY
+done

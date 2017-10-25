@@ -14,11 +14,11 @@ install:
   - docker --version
   - docker login -u pypywheels -p $DOCKERPASS
   - ./docker/build_image.sh
+  - pip install pytest
 
 script:
-  - ./run.sh
-
-after_script:
-  - ./clone-gh-pages.sh
-  - python build_index.py wheelhouse/ubuntu/ /tmp/gh-pages/ubuntu
-  - ./commit-gh-pages.sh
+  - py.test scripts
+  - ./scripts/run.sh
+  - ./scripts/clone-gh-pages.sh
+  - python scripts/build_index.py wheelhouse/ubuntu/ /tmp/gh-pages/ubuntu
+  - ./scripts/commit-gh-pages.sh

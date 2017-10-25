@@ -22,12 +22,23 @@ git config user.email "$EMAIL"
 git config user.name "Travis CI"
 
 git add .
+git status
 git commit -m "update index:
   - commit $SHA
   - travis job $TRAVIS_JOB_NUMBER
   - https://travis-ci.org/antocuni/pypy-wheels/jobs/$TRAVIS_JOB_ID
 "
-git push $SSH_REPO $TARGET_BRANCH
+
+# https://graysonkoonce.com/getting-the-current-branch-name-during-a-pull-request-in-travis-ci/
+TR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
+echo "current git branch: $TR_BRANCH"
+if [ "$TR_BRANCH" == "master" ]
+then
+    echo "pushing changes to $SSH_REPO"
+    git push $SSH_REPO $TARGET_BRANCH
+else
+    echo "NOT pushing, since it's not master"
+fi
 
 # workaround for this travis bug:
 # https://github.com/travis-ci/travis-ci/issues/8082

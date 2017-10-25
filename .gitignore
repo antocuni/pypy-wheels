@@ -1,3 +1,9 @@
+travis/travis.rsa
+travis/travis.rsa.pub
+pypy
+pypy-*
+wheelhouse
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

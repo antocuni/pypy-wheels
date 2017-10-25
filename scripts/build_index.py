@@ -6,13 +6,18 @@ class IndexBuilder(object):
     def __init__(self, wheeldir, outdir):
         self.wheeldir = py.path.local(wheeldir)
         self.outdir = py.path.local(outdir)
-        self.packages = []
+        self.packages = set()
+
+    @classmethod
+    def parse(cls, f):
+        name, version, _ = f.basename.split('-', 2)
+        return name, version
 
     def copy_wheels(self):
         for whl in self.wheeldir.visit('*.whl'):
             print 'Collecting wheel:', whl.basename
             name, version = self.parse(whl)
-            self.packages.append(name)
+            self.packages.add(name)
             d = self.outdir.join(name).ensure(dir=True)
             dst = d.join(whl.basename)
             if dst.check(file=False):
@@ -28,10 +33,6 @@ class IndexBuilder(object):
             wheels = [whl.basename for whl in d.listdir('*.whl')]
             self._write_index(d, 'Links for %s' % pkg, wheels)
         print 'OK'
-
-    def parse(self, f):
-        name, version, _ = f.basename.split('-', 2)
-        return name, version
 
     def _write_index(self, d, title, links):
         lines = [
