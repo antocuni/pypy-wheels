@@ -11,9 +11,9 @@ TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 packages=(
     netifaces
     psutil
-    # numpy
-    # scipy
-    # pandas
+    numpy
+    scipy
+    pandas
 )
 
 # Compile the wheels, for all pypys found inside /opt/
