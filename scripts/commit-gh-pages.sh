@@ -8,6 +8,13 @@ SHA=`git rev-parse --verify HEAD`
 EMAIL=`git --no-pager show -s --format='<%ae>' HEAD`
 
 # setup ssh auth
+if [ ! -e ./travis/travis.rsa ]
+then
+    echo "travis/travis.rsa does not exists (probably because this is a PR)"
+    echo "exiting"
+    exit
+fi
+
 chmod 600 ./travis/travis.rsa
 eval `ssh-agent -s`
 ssh-add ./travis/travis.rsa
