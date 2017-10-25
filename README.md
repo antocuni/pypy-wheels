@@ -44,20 +44,15 @@ Currently, it is not possible to build PyPy on centos5, which is required for ma
 
 In case you are interested in helping, pull requests are welcome. Here is a
 random list of features which would be nice to have:
-
-1. It is possible that if you fork the repo e create a PR, the travis build
-   will fail because it does not have the rights to do `docker push` after
-   rebuilding the image, and/or `git push gh-pages` after rebuilding the
-   index. We should insert a check and avoid that.
    
-2. If you want to build a new package, just add it `build_wheels.sh` and make
+1. If you want to build a new package, just add it `build_wheels.sh` and make
    sure it compiles correctly. You might need to `apt-get install` more
    packages in `docker/image/install_packages.sh`.
    
-3. If you want to build wheels for `OS/X` or other linux distros, feel free to
+2. If you want to build wheels for `OS/X` or other linux distros, feel free to
    do so :)
    
-4. As written above, `manylinux1` cannot work. However, I tried to produce
+3. As written above, `manylinux1` cannot work. However, I tried to produce
    `"somelinux"` wheels which were suppposed to work on most linux systems, by
    building them on CentOS 6 (as opposed to manylinux's CentOS 5) and run
    `auditwheel repair` on them. However, I got hit by this bug:
