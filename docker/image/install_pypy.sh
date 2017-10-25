@@ -4,6 +4,8 @@
 ALL_PYPYS=(
     pypy-5.8-1-linux_x86_64-portable.tar.bz2
     pypy-5.9-linux_x86_64-portable.tar.bz2
+    pypy3.5-5.8-1-beta-linux_x86_64-portable.tar.bz2
+    pypy3.5-5.9-beta-linux_x86_64-portable.tar.bz2
 )
 
 function install_pypy() {
