@@ -22,6 +22,7 @@ git config user.email "$EMAIL"
 git config user.name "Travis CI"
 
 git add .
+git status
 git commit -m "update index:
   - commit $SHA
   - travis job $TRAVIS_JOB_NUMBER
