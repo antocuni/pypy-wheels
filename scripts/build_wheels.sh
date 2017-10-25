@@ -4,7 +4,8 @@
 
 set -e -x
 
-TARGETDIR=/pypy-wheels/wheelhouse/$1
+TARGET=$1
+TARGETDIR=/pypy-wheels/wheelhouse/$TARGETDIR
 
 packages=(
     netifaces
@@ -20,8 +21,14 @@ echo
 cd
 for PKG in "${packages[@]}"
 do
-    pypy -m pip install $PKG
-    pypy -m pip wheel $PKG -w wheelhouse
+    # pip install using our own wheel repo: this ensures that we don't
+    # recompile a package if the wheel is already available.
+    pypy -m pip install $PKG \
+         --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+
+    pypy -m pip wheel $PKG \
+         -w wheelhouse \
+         --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
 done
 
 # copy the wheels to the final directory
