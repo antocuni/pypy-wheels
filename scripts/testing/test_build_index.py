@@ -1,3 +1,4 @@
+import py
 from build_index import IndexBuilder
 
 def w(d, path, content):
@@ -7,6 +8,12 @@ def w(d, path, content):
     return f
 
 class TestIndexBuilder:
+
+    def test_parse(self):
+        fname = py.path.local('numpy-1.13.1-pp258-pypy_41-linux_x86_64.whl')
+        name, version = IndexBuilder.parse(fname)
+        assert name == 'numpy'
+        assert version == '1.13.1'
 
     def test_copy_wheels(self, tmpdir):
         src = tmpdir.join('src')

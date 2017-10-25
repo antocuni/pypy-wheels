@@ -29,7 +29,8 @@ class IndexBuilder(object):
             self._write_index(d, 'Links for %s' % pkg, wheels)
         print 'OK'
 
-    def parse(self, f):
+    @classmethod
+    def parse(cls, f):
         name, version, _ = f.basename.split('-', 2)
         return name, version
 
