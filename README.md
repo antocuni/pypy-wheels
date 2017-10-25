@@ -1,6 +1,8 @@
 # Binary wheels for PyPy
 
-This repo contains PyPy binary wheels for some popular packages. This is still highly experimental.
+[![Build Status](https://travis-ci.org/antocuni/pypy-wheels.svg?branch=refactor)](https://travis-ci.org/antocuni/pypy-wheels)
+
+This repo contains PyPy binary wheels for some popular packages. This is still highly experimental. There is a travis cron job which runs daily, to ensure that we build new wheels if there are new releases of such packages.
 
 Currently, we provide only wheels for Ubuntu: they are built on Ubuntu 14.04 but they should work also on subsequent versions. To use them, you can invoke pip like this:
 
