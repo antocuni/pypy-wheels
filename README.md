@@ -55,11 +55,7 @@ random list of features which would be nice to have:
 3. If you want to build wheels for `OS/X` or other linux distros, feel free to
    do so :)
    
-4. Currently, the build script recompiles every package each time it is
-   run. It would be nice to skip the build in case a wheel for a specific
-   version of a package is already there.
-
-5. As written above, `manylinux1` cannot work. However, I tried to produce
+4. As written above, `manylinux1` cannot work. However, I tried to produce
    `"somelinux"` wheels which were suppposed to work on most linux systems, by
    building them on CentOS 6 (as opposed to manylinux's CentOS 5) and run
    `auditwheel repair` on them. However, I got hit by this bug:
