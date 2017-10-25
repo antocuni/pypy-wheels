@@ -9,7 +9,7 @@ TARGETDIR=/pypy-wheels/wheelhouse/$TARGETDIR
 
 packages=(
     netifaces
-    # psutil
+    psutil
     # numpy
     # scipy
     # pandas
@@ -19,17 +19,16 @@ packages=(
 echo "Compiling wheels..."
 echo
 cd
-for PKG in "${packages[@]}"
-do
+
     # pip install using our own wheel repo: this ensures that we don't
     # recompile a package if the wheel is already available.
-    pypy -m pip install $PKG \
+    pypy -m pip install "${packages[@]}" \
          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
 
-    pypy -m pip wheel $PKG \
+    pypy -m pip wheel "${packages[@]}" \
          -w wheelhouse \
          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-done
+
 
 # copy the wheels to the final directory
 mkdir -p $TARGETDIR
