@@ -19,8 +19,6 @@ install:
 script:
   - py.test scripts
   - ./scripts/run.sh
-
-after_script:
   - ./scripts/clone-gh-pages.sh
   - python scripts/build_index.py wheelhouse/ubuntu/ /tmp/gh-pages/ubuntu
   - ./scripts/commit-gh-pages.sh
