@@ -12,7 +12,7 @@ before_install:
 
 install:
   - docker --version
-  - docker login -u pypywheels -p $DOCKERPASS
+  - test -z "$DOCKERPASS" || docker login -u pypywheels -p $DOCKERPASS
   - ./docker/build_image.sh
   - pip install pytest
 
