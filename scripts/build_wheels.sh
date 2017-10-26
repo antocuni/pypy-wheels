@@ -11,7 +11,6 @@ TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 packages=(
     netifaces
     psutil
-    numpy
     scipy
     pandas
 )
@@ -21,6 +20,23 @@ echo "Compiling wheels"
 echo "TARGETDIR: $TARGETDIR"
 echo
 cd
+
+# First, NumPy wheels
+for PYPY in /opt/pypy*/bin/pypy
+do
+    echo "FOUND PYPY: $PYPY"
+    # pip install using our own wheel repo: this ensures that we don't
+    # recompile a package if the wheel is already available.
+    $PYPY -m pip install numpy \
+          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+
+    $PYPY -m pip wheel numpy \
+          -w wheelhouse \
+          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+    echo
+done
+
+# Then, the rest
 for PYPY in /opt/pypy*/bin/pypy
 do
     echo "FOUND PYPY: $PYPY"
