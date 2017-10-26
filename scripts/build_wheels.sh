@@ -21,7 +21,7 @@ echo "Compiling wheels"
 echo "TARGETDIR: $TARGETDIR"
 echo
 cd
-for PYPY in /opt/pypy-*/bin/pypy
+for PYPY in /opt/pypy*/bin/pypy
 do
     echo "FOUND PYPY: $PYPY"
     # pip install using our own wheel repo: this ensures that we don't

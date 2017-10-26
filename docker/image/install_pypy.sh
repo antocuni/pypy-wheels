@@ -22,10 +22,6 @@ function install_pypy() {
 
     cd /opt
     tar xf /tmp/$PYPY
-    #
-    # add a symlink to /opt/pypy, so that it always contains the latest
-    # installed pypy
-    ln -sf $DIR pypy
 
     /opt/$DIR/bin/pypy -m ensurepip
     /opt/$DIR/bin/pypy -m pip install wheel
