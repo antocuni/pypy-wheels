@@ -4,6 +4,8 @@
 ALL_PYPYS=(
     pypy-5.8-1-linux_x86_64-portable.tar.bz2
     pypy-5.9-linux_x86_64-portable.tar.bz2
+    pypy3.5-5.8-1-beta-linux_x86_64-portable.tar.bz2
+    pypy3.5-5.9-beta-linux_x86_64-portable.tar.bz2
 )
 
 function install_pypy() {
@@ -20,10 +22,6 @@ function install_pypy() {
 
     cd /opt
     tar xf /tmp/$PYPY
-    #
-    # add a symlink to /opt/pypy, so that it always contains the latest
-    # installed pypy
-    ln -sf $DIR pypy
 
     /opt/$DIR/bin/pypy -m ensurepip
     /opt/$DIR/bin/pypy -m pip install wheel
