@@ -13,6 +13,8 @@ packages=(
     psutil
     scipy
     pandas
+    matplotlib
+    astropy
 )
 
 # Compile the wheels, for all pypys found inside /opt/
