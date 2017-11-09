@@ -1,6 +1,6 @@
 # Binary wheels for PyPy
 
-[![Build Status](https://travis-ci.org/antocuni/pypy-wheels.svg?branch=refactor)](https://travis-ci.org/antocuni/pypy-wheels)
+[![Build Status](https://travis-ci.org/antocuni/pypy-wheels.svg?branch=master)](https://travis-ci.org/antocuni/pypy-wheels)
 
 This repo contains PyPy binary wheels for some popular packages. This is still highly experimental. There is a travis cron job which runs daily, to ensure that we build new wheels if there are new releases of such packages.
 
