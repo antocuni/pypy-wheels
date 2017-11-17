@@ -9,7 +9,7 @@ TARGET=$1
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
 packages=(
-    cryptography
+    #cryptography
     netifaces
     psutil
     scipy
