@@ -9,11 +9,11 @@ TARGET=$1
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
 packages=(
-#    cryptography
+    cryptography
     netifaces
-#    psutil
-#    scipy
-#    pandas
+    psutil
+    scipy
+    pandas
 )
 
 # Compile the wheels, for all pypys found inside /opt/
