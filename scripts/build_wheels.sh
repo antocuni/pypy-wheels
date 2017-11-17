@@ -35,7 +35,7 @@ fi
 
 # pip install using our own wheel repo: this ensures that we don't
 # recompile a package if the wheel is already available.
-EXTRA=--extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+EXTRA="--extra-index https://antocuni.github.io/pypy-wheels/$TARGET"
 
 # First, NumPy wheels
 $PYPY -m pip install $EXTRA numpy
