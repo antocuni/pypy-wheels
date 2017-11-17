@@ -1,8 +1,12 @@
 #!/bin/bash
 
-set -e -x
+set -e
 
 . docker/env.sh
+
+function tag_exists() {
+    curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
+}
 
 function _build_maybe() {
     local dir=$1
@@ -10,10 +14,12 @@ function _build_maybe() {
     local tag=$3
     local extra_args="${@:4}"
 
-    echo "Trying to pull $image:$tag"
-    if ! docker pull $image:$tag
+    echo "Checking $image:$tag"
+    if tag_exists $image $tag
     then
-        echo "pull failed, building it"
+        echo "  image already on docker hub, nothing to do"
+    else
+        echo "  image does not exist, building it"
         docker build docker/$dir -t $image:$tag $extra_args || exit
         if [ "$TRAVIS_PULL_REQUEST" = "false" ]
         then

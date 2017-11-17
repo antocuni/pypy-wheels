@@ -9,11 +9,11 @@ TARGET=$1
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
 packages=(
-    cryptography
+#    cryptography
     netifaces
-    psutil
-    scipy
-    pandas
+#    psutil
+#    scipy
+#    pandas
 )
 
 # Compile the wheels, for all pypys found inside /opt/
@@ -22,35 +22,30 @@ echo "TARGETDIR: $TARGETDIR"
 echo
 cd
 
-# First, NumPy wheels
-for PYPY in /opt/pypy*/bin/pypy
-do
+# we expect PYPY to be something like "pypy-5.8", originated from the travis
+# build matrix and passed via "docker run -e PYPY"
+PYPY=/opt/$PYPY*/bin/pypy
+if [ -f $PYPY ]
+then
     echo "FOUND PYPY: $PYPY"
-    # pip install using our own wheel repo: this ensures that we don't
-    # recompile a package if the wheel is already available.
-    $PYPY -m pip install numpy \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+else
+    echo "ERROR: PYPY does not exists: $PYPY"
+    exit 1
+fi
 
-    $PYPY -m pip wheel numpy \
-          -w wheelhouse \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-    echo
-done
+# pip install using our own wheel repo: this ensures that we don't
+# recompile a package if the wheel is already available.
+EXTRA="--extra-index https://antocuni.github.io/pypy-wheels/$TARGET"
+
+# First, NumPy wheels
+$PYPY -m pip install $EXTRA numpy
+$PYPY -m pip wheel $EXTRA -w wheelhouse numpy
+echo
 
 # Then, the rest
-for PYPY in /opt/pypy*/bin/pypy
-do
-    echo "FOUND PYPY: $PYPY"
-    # pip install using our own wheel repo: this ensures that we don't
-    # recompile a package if the wheel is already available.
-    $PYPY -m pip install "${packages[@]}" \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-
-    $PYPY -m pip wheel "${packages[@]}" \
-          -w wheelhouse \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-    echo
-done
+$PYPY -m pip install $EXTRA "${packages[@]}"
+$PYPY -m pip wheel $EXTRA -w wheelhouse "${packages[@]}"
+echo
 
 # copy the wheels to the final directory
 mkdir -p $TARGETDIR
