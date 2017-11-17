@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # install pypy into /opt/pypy*
 ALL_PYPYS=(
     pypy-5.8-1-linux_x86_64-portable.tar.bz2
@@ -10,9 +12,8 @@ ALL_PYPYS=(
 
 function install_pypy() {
     PYPY=$1
+    URL=$2
     echo "Installing $PYPY"
-    URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
-
     cd /tmp
     if [ ! -f $PYPY ]; then
         curl -O -L $URL
@@ -31,5 +32,11 @@ function install_pypy() {
 
 for PYPY in "${ALL_PYPYS[@]}"
 do
-    install_pypy $PYPY
+    URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
+    install_pypy $PYPY $URL
 done
+
+# build wheels also for this nightly pypy (will be pypy 5.10)
+PYPY="pypy-c-jit-93045-95e0fdd7cd86-linux64.tar.bz2"
+URL="http://buildbot.pypy.org/nightly/trunk/$PYPY"
+install_pypy $PYPY $URL
