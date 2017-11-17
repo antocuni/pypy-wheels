@@ -22,35 +22,34 @@ echo "TARGETDIR: $TARGETDIR"
 echo
 cd
 
-# First, NumPy wheels
-for PYPY in /opt/pypy*/bin/pypy
-do
-    echo "FOUND PYPY: $PYPY"
-    # pip install using our own wheel repo: this ensures that we don't
-    # recompile a package if the wheel is already available.
-    $PYPY -m pip install numpy \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+PYPYBIN=/opt/$PYPY*/bin/pypy
+if [ -f $PYPYBIN ]
+then
+    echo "FOUND PYPY: $PYPYBIN"
+else
+    echo "ERROR: PYPYBIN does not exists: $PYPYBIN"
+    exit 1
+fi
 
-    $PYPY -m pip wheel numpy \
-          -w wheelhouse \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-    echo
-done
+# First, NumPy wheels
+# pip install using our own wheel repo: this ensures that we don't
+# recompile a package if the wheel is already available.
+$PYPYBIN -m pip install numpy \
+      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+
+$PYPYBIN -m pip wheel numpy \
+      -w wheelhouse \
+      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+echo
 
 # Then, the rest
-for PYPY in /opt/pypy*/bin/pypy
-do
-    echo "FOUND PYPY: $PYPY"
-    # pip install using our own wheel repo: this ensures that we don't
-    # recompile a package if the wheel is already available.
-    $PYPY -m pip install "${packages[@]}" \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+$PYPY -m pip install "${packages[@]}" \
+      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
 
-    $PYPY -m pip wheel "${packages[@]}" \
-          -w wheelhouse \
-          --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-    echo
-done
+$PYPY -m pip wheel "${packages[@]}" \
+      -w wheelhouse \
+      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+echo
 
 # copy the wheels to the final directory
 mkdir -p $TARGETDIR
