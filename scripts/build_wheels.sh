@@ -33,24 +33,18 @@ else
     exit 1
 fi
 
-# First, NumPy wheels
 # pip install using our own wheel repo: this ensures that we don't
 # recompile a package if the wheel is already available.
-$PYPY -m pip install numpy \
-      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+EXTRA=--extra-index https://antocuni.github.io/pypy-wheels/$TARGET
 
-$PYPY -m pip wheel numpy \
-      -w wheelhouse \
-      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+# First, NumPy wheels
+$PYPY -m pip install $EXTRA numpy
+$PYPY -m pip wheel $EXTRA -w wheelhouse numpy
 echo
 
 # Then, the rest
-$PYPY -m pip install "${packages[@]}" \
-      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
-
-$PYPY -m pip wheel "${packages[@]}" \
-      -w wheelhouse \
-      --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
+$PYPY -m pip install $EXTRA "${packages[@]}"
+$PYPY -m pip wheel $EXTRA -w wheelhouse "${packages[@]}"
 echo
 
 # copy the wheels to the final directory
