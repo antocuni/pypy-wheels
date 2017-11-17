@@ -22,22 +22,24 @@ echo "TARGETDIR: $TARGETDIR"
 echo
 cd
 
-PYPYBIN=/opt/$PYPY*/bin/pypy
-if [ -f $PYPYBIN ]
+# we expect PYPY to be something like "pypy-5.8", originated from the travis
+# build matrix and passed via "docker run -e PYPY"
+PYPY=/opt/$PYPY*/bin/pypy
+if [ -f $PYPY ]
 then
-    echo "FOUND PYPY: $PYPYBIN"
+    echo "FOUND PYPY: $PYPY"
 else
-    echo "ERROR: PYPYBIN does not exists: $PYPYBIN"
+    echo "ERROR: PYPY does not exists: $PYPY"
     exit 1
 fi
 
 # First, NumPy wheels
 # pip install using our own wheel repo: this ensures that we don't
 # recompile a package if the wheel is already available.
-$PYPYBIN -m pip install numpy \
+$PYPY -m pip install numpy \
       --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
 
-$PYPYBIN -m pip wheel numpy \
+$PYPY -m pip wheel numpy \
       -w wheelhouse \
       --extra-index https://antocuni.github.io/pypy-wheels/$TARGET
 echo
