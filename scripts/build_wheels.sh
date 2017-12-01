@@ -13,7 +13,7 @@ packages=(
     netifaces
     psutil
     scipy
-    pandas
+    #pandas
     pandas==0.20.3
     )
 
