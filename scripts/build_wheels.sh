@@ -14,7 +14,8 @@ packages=(
     psutil
     scipy
     pandas
-)
+    pandas==0.20.3
+    )
 
 # Compile the wheels, for all pypys found inside /opt/
 echo "Compiling wheels"
