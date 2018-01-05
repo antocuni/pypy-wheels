@@ -5,9 +5,11 @@ set -e
 # install pypy into /opt/pypy*
 ALL_PYPYS=(
     pypy-5.8-1-linux_x86_64-portable.tar.bz2
-    pypy-5.9-linux_x86_64-portable.tar.bz2
     pypy3.5-5.8-1-beta-linux_x86_64-portable.tar.bz2
+    pypy-5.9-linux_x86_64-portable.tar.bz2
     pypy3.5-5.9-beta-linux_x86_64-portable.tar.bz2
+    pypy-5.10.0-linux_x86_64-portable.tar.bz2
+    pypy3.5-5.10.0-linux_x86_64-portable.tar.bz2
 )
 
 function install_pypy() {
@@ -35,8 +37,3 @@ do
     URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
     install_pypy $PYPY $URL
 done
-
-# build wheels also for this nightly pypy (will be pypy 5.10)
-PYPY="pypy-c-jit-93045-95e0fdd7cd86-linux64.tar.bz2"
-URL="http://buildbot.pypy.org/nightly/trunk/$PYPY"
-install_pypy $PYPY $URL
