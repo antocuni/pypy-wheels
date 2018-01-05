@@ -19,10 +19,11 @@ jobs:
 
     # these will be executed in the "wheels" stage
     - env: PYPY="pypy-5.8"
-    - env: PYPY="pypy-5.9"
     - env: PYPY="pypy3.5-5.8"
+    - env: PYPY="pypy-5.9"
     - env: PYPY="pypy3.5-5.9"
-    - env: PYPY="pypy-c-jit-93045-95e0fdd7cd86" # nightly of pypy-5.10
+    - env: PYPY="pypy-5.10"
+    - env: PYPY="pypy3.5-5.10"
 
 stage: wheels
 
