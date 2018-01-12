@@ -34,5 +34,7 @@ script:
   - py.test scripts
   - ./scripts/run.sh
   - ./scripts/clone-gh-pages.sh
+  - pwd; find wheelhouse/ubuntu/
   - python scripts/build_index.py wheelhouse/ubuntu/ /tmp/gh-pages/ubuntu
+  - pwd; find wheelhouse/ubuntu/
   - ./scripts/commit-gh-pages.sh
