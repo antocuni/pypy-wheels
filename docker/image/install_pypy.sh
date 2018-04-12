@@ -37,3 +37,8 @@ do
     URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
     install_pypy $PYPY $URL
 done
+
+# build wheels also for this nightly pypy (will be pypy 5.11/6.0)
+PYPY="pypy-c-jit-94304-60c5692d6d40-linux64.tar.bz2"
+URL="http://buildbot.pypy.org/nightly/trunk/$PYPY"
+install_pypy $PYPY $URL
