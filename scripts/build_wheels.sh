@@ -13,8 +13,9 @@ packages=(
     netifaces
     psutil
     scipy
-    #pandas
+    pandas
     pandas==0.20.3
+    scipy==1.0.0
     )
 
 # Compile the wheels, for all pypys found inside /opt/
