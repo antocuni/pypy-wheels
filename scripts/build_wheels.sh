@@ -9,13 +9,14 @@ TARGET=$1
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
 packages=(
+    numpy
     #cryptography
     netifaces
     psutil
     scipy
+    scipy==1.0.0
     pandas
     pandas==0.20.3
-    scipy==1.0.0
     )
 
 # Compile the wheels, for all pypys found inside /opt/
@@ -39,15 +40,13 @@ fi
 # recompile a package if the wheel is already available.
 EXTRA="--extra-index https://antocuni.github.io/pypy-wheels/$TARGET"
 
-# First, NumPy wheels
-$PYPY -m pip install $EXTRA numpy
-$PYPY -m pip wheel $EXTRA -w wheelhouse numpy
-echo
-
-# Then, the rest
-$PYPY -m pip install $EXTRA "${packages[@]}"
-$PYPY -m pip wheel $EXTRA -w wheelhouse "${packages[@]}"
-echo
+for pkg in "${packages[@]}"
+do
+    echo "Compiling $pkg"
+    $PYPY -m pip install $EXTRA "$pkg"
+    $PYPY -m pip wheel $EXTRA -w wheelhouse "$pkg"
+    echo
+done
 
 # copy the wheels to the final directory
 mkdir -p $TARGETDIR
