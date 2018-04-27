@@ -38,7 +38,12 @@ do
     install_pypy $PYPY $URL
 done
 
-# build wheels also for this nightly pypy (will be pypy 5.11/6.0)
-PYPY="pypy-c-jit-94304-60c5692d6d40-linux64.tar.bz2"
-URL="http://buildbot.pypy.org/nightly/trunk/$PYPY"
+# build wheels also for this nightly pypy
+# PYPY="pypy-c-jit-94304-60c5692d6d40-linux64.tar.bz2"
+# URL="http://buildbot.pypy.org/nightly/trunk/$PYPY"
+#install_pypy $PYPY $URL
+
+# build wheels for pypy 6 using the official tarball, while we wait for the portable build
+PYPY="pypy2-v6.0.0-linux64.tar.bz2"
+URL="https://bitbucket.org/pypy/pypy/downloads/$PYPY"
 install_pypy $PYPY $URL
