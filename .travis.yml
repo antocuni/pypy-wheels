@@ -24,7 +24,8 @@ jobs:
     - env: PYPY="pypy3.5-5.9"
     - env: PYPY="pypy-5.10"
     - env: PYPY="pypy3.5-5.10"
-    - env: PYPY="pypy2-v6.0.0-linux64"
+    - env: PYPY="pypy-6.0.0"
+    - env: PYPY="pypy3.5-6.0.0"
 
 stage: wheels
 
