@@ -5,6 +5,7 @@
 #set -e -x
 set -e
 
+PYPY_VERSION="${PYPY/pypy*-/}"
 TARGET=$1
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
@@ -15,9 +16,16 @@ packages=(
     psutil
     scipy
     scipy==1.0.0
-    pandas
     pandas==0.20.3
     )
+
+# the latest version of pandas work only on new pypys. This logic starts to be
+# a bit too complex, we should probably write it in something better than bash
+# :(
+if [[ "$PYPY_VERSION" > "6.0" ]]
+then
+    packages+=(pandas)
+fi
 
 # Compile the wheels, for all pypys found inside /opt/
 echo "Compiling wheels"
