@@ -4,14 +4,13 @@ set -e
 
 # install pypy into /opt/pypy*
 ALL_PYPYS=(
-    pypy-5.8-1-linux_x86_64-portable.tar.bz2
-    pypy3.5-5.8-1-beta-linux_x86_64-portable.tar.bz2
-    pypy-5.9-linux_x86_64-portable.tar.bz2
-    pypy3.5-5.9-beta-linux_x86_64-portable.tar.bz2
     pypy-5.10.0-linux_x86_64-portable.tar.bz2
     pypy3.5-5.10.0-linux_x86_64-portable.tar.bz2
     pypy-6.0.0-linux_x86_64-portable.tar.bz2
     pypy3.5-6.0.0-linux_x86_64-portable.tar.bz2
+    pypy-7.0.0-linux_x86_64-portable.tar.bz2
+    pypy3.5-7.0.0-linux_x86_64-portable.tar.bz2
+    pypy3.6-7.0.0-alpha-20190209-linux_x86_64-portable.tar.bz2
 )
 
 function install_pypy() {
@@ -40,7 +39,3 @@ do
     install_pypy $PYPY $URL
 done
 
-# build wheels also for this nightly pypy
-# PYPY="pypy-c-jit-94304-60c5692d6d40-linux64.tar.bz2"
-# URL="http://buildbot.pypy.org/nightly/trunk/$PYPY"
-#install_pypy $PYPY $URL

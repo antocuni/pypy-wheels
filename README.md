@@ -6,6 +6,19 @@ This repo contains PyPy binary wheels for some popular packages. This is still
 highly experimental. There is a travis cron job which runs daily, to ensure
 that we build new wheels if there are new releases of such packages.
 
+We continuously build wheels for the three latest PyPy releases, which
+currently are:
+
+  - PyPy 7.0
+
+  - PyPy 6.0
+
+  - PyPy 5.10
+
+Older version of PyPy are still partially supported, to avoid breaking your
+builds: the exising wheels will not be deleted, but when a package release a
+new version the wheel will **not** be updated.
+
 Currently, we provide only wheels for Ubuntu: they are built on Ubuntu 14.04
 but they should work also on subsequent versions. To use them, you can invoke
 pip like this:
