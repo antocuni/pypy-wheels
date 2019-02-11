@@ -9,8 +9,17 @@ PYPY_VERSION="${PYPY/pypy*-/}"
 TARGET=$1
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
+packages=()
+
+# newer versions of numpy don't work on older versions of pypy, pin it
+if [[ "$PYPY_VERSION" >= "7.0" ]]
+then
+    packages+=(numpy)
+else
+    packages+=(numpy==1.15.4)
+fi
+
 packages=(
-    numpy
     #cryptography
     netifaces
     psutil
