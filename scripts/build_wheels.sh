@@ -24,7 +24,7 @@ packages=(
     netifaces
     psutil
     scipy
-    scipy==1.0.0
+    #scipy==1.0.0
     pandas==0.20.3
     )
 
