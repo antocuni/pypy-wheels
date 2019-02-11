@@ -11,11 +11,11 @@ TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
 packages=()
 
-# newer versions of numpy don't work on older versions of pypy, pin it
-if [[ "$PYPY_VERSION" >= "7.0" ]]
+if [[ "$PYPY_VERSION" > "6.9" ]]
 then
     packages+=(numpy)
 else
+    # this is the latest numpy which works on pypy-6.0.0 and below
     packages+=(numpy==1.15.4)
 fi
 
