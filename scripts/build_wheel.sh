@@ -37,6 +37,13 @@ cd
 # pip install using our own wheel repo: this ensures that we don't
 # recompile a package if the wheel is already available.
 EXTRA="--extra-index https://antocuni.github.io/pypy-wheels/$TARGET"
+
+if [[ "$PKG" = "scipy" ]]
+then
+    # else scipy doesn't build :(
+    $PYPY -m pip install $EXTRA numpy
+fi
+
 $PYPY -m pip wheel $EXTRA -w wheelhouse "$PKG"
 
 # copy the wheels to the final directory
