@@ -18,16 +18,26 @@ PACKAGES = [
 
 class Jobs(object):
 
-    def __init__(self, pypys, packages):
+    def __init__(self, pypys, packages, exclude):
         self.pypys = pypys
         self.packages = packages
+        self.exclude = exclude
+
+    def is_excluded(self, pkg, pypy, py):
+        rule = self.exclude.get(pkg)
+        if not rule:
+            return False
+        ex_pypy, ex_py = rule
+        return (ex_pypy in (pypy, '*') and
+                ex_py in (py, '*'))
 
     def generate(self):
         all_pypys = sorted(self.pypys)
         for pkg in self.packages:
             for pypy in all_pypys:
                 for py in self.pypys[pypy]:
-                    yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
+                    if not self.is_excluded(pkg, pypy, py):
+                        yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
 
 def main():
     pypy_w = width(PYPYS)
