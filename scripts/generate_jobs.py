@@ -16,6 +16,13 @@ PACKAGES = [
     #pandas==0.20.3
 ]
 
+# {package: (pypy, py)}
+EXCLUDE = {
+    'numpy': ('6.0.0', '*'),
+    'scipy': ('6.0.0', '*'),
+    'pandas': ('6.0.0', '*'),
+    }
+
 class Jobs(object):
 
     def __init__(self, pypys, packages, exclude):
@@ -45,12 +52,13 @@ def main():
 
 
 if __name__ == '__main__':
-    jobs = Jobs(PYPYS, PACKAGES)
+    jobs = Jobs(PYPYS, PACKAGES, EXCLUDE)
     all_envs = list(jobs.generate())
     # travis allows max 200 jobs, but we need to count also the docker-image
     # and the pytest jobs
+    print 'env:'
     for env in all_envs:
-        print '- env: %s' % env
+        print '  - %s' % env
 
     if len(all_envs) >= 198:
         print
