@@ -38,12 +38,14 @@ cd
 # recompile a package if the wheel is already available.
 EXTRA="--extra-index https://antocuni.github.io/pypy-wheels/$TARGET"
 
-if [[ "$PKG" = "scipy" ]]
-then
-    # else scipy doesn't build :(
-    $PYPY -m pip install $EXTRA numpy
-fi
+# there are lots of packages which import numpy in the setup.py; this is
+# wrong, but there is nothing we can do to fix them. Instead, let's simply
+# install numpy always, before creating the wheel. We do a bit of extra
+# useless work for other packages, but since we are using our wheels it's not
+# too bad
+$PYPY -m pip install $EXTRA numpy
 
+# create the actual wheel
 $PYPY -m pip wheel $EXTRA -w wheelhouse "$PKG"
 
 # copy the wheels to the final directory

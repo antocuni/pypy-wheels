@@ -28,6 +28,12 @@ git config push.default simple
 git config user.email "$EMAIL"
 git config user.name "Travis CI"
 
+# the following is unsafe, there are race conditions: if two jobs try to
+# commit at the same time, the second cannot push because it creates another
+# head. Solving it completely is not easy because the html files conflicts. To
+# mitigate the problem, we do a git pull immediately before the commit
+git pull
+
 git add .
 git status
 git commit -m "update index:
