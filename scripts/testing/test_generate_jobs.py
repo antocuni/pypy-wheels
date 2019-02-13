@@ -1,4 +1,5 @@
-from generate_jobs import Jobs
+import py
+from generate_jobs import Jobs, TRAVIS_JOBS
 
 def test_generate():
     pypys = {
@@ -66,3 +67,9 @@ def test_include():
         'PYPY="6.0.0" PY="2.7" PKG="pandas"',
         ]
 
+def test_travis_yml():
+    root = py.path.local(__file__).dirpath('..', '..')
+    yml = root.join('.travis.yml')
+    travis_yml = yml.read()
+    for env in TRAVIS_JOBS.generate():
+        assert env in travis_yml, '.travis.yml and generate_jobs are out of sync'

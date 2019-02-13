@@ -56,14 +56,10 @@ class Jobs(object):
         for pkg, pypy, py in self.include:
             yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
 
-def main():
-    pypy_w = width(PYPYS)
-    packages_w = width(PACKAGES)
 
-
+TRAVIS_JOBS = Jobs(PYPYS, PACKAGES, EXCLUDE, INCLUDE)
 if __name__ == '__main__':
-    jobs = Jobs(PYPYS, PACKAGES, EXCLUDE, INCLUDE)
-    all_envs = list(jobs.generate())
+    all_envs = list(TRAVIS_JOBS.generate())
     # travis allows max 200 jobs, but we need to count also the docker-image
     # and the pytest jobs
     print 'env:'
