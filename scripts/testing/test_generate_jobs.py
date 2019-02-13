@@ -10,7 +10,7 @@ def test_generate():
         'scipy'
         ]
 
-    jobs = Jobs(pypys, packages, {})
+    jobs = Jobs(pypys, packages, {}, [])
     envs = list(jobs.generate())
     assert envs == [
         'PYPY="6.0" PY="2.7" PKG="numpy"',
@@ -36,10 +36,33 @@ def test_exclude():
         'scipy': ('*', '2.7')
         }
 
-    jobs = Jobs(pypys, packages, exclude)
+    jobs = Jobs(pypys, packages, exclude, [])
     envs = list(jobs.generate())
     assert envs == [
         'PYPY="7.0.0" PY="2.7" PKG="numpy"',
         'PYPY="7.0.0" PY="3.5" PKG="numpy"',
         'PYPY="7.0.0" PY="3.5" PKG="scipy"',
         ]
+
+
+def test_include():
+    pypys = {
+        '7.0.0': ['2.7', '3.5'],
+        }
+    packages = [
+        'numpy',
+        ]
+    include = [
+        ('scipy', '6.0.0', '2.7'),
+        ('pandas', '6.0.0', '2.7'),
+        ]
+
+    jobs = Jobs(pypys, packages, {}, include)
+    envs = list(jobs.generate())
+    assert envs == [
+        'PYPY="7.0.0" PY="2.7" PKG="numpy"',
+        'PYPY="7.0.0" PY="3.5" PKG="numpy"',
+        'PYPY="6.0.0" PY="2.7" PKG="scipy"',
+        'PYPY="6.0.0" PY="2.7" PKG="pandas"',
+        ]
+

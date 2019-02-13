@@ -23,12 +23,20 @@ EXCLUDE = {
     'pandas': ('6.0.0', '*'),
     }
 
+INCLUDE = [
+    ('numpy==1.14.3',  '7.0.0', '2.7'),
+    ('pandas==0.20.3', '7.0.0', '2.7'),
+    ('scipy==1.1.0',   '7.0.0', '2.7'),
+    ('cython==0.28.2', '7.0.0', '2.7'),
+    ]
+
 class Jobs(object):
 
-    def __init__(self, pypys, packages, exclude):
+    def __init__(self, pypys, packages, exclude, include):
         self.pypys = pypys
         self.packages = packages
         self.exclude = exclude
+        self.include = include
 
     def is_excluded(self, pkg, pypy, py):
         rule = self.exclude.get(pkg)
@@ -45,6 +53,8 @@ class Jobs(object):
                 for py in self.pypys[pypy]:
                     if not self.is_excluded(pkg, pypy, py):
                         yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
+        for pkg, pypy, py in self.include:
+            yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
 
 def main():
     pypy_w = width(PYPYS)
@@ -52,7 +62,7 @@ def main():
 
 
 if __name__ == '__main__':
-    jobs = Jobs(PYPYS, PACKAGES, EXCLUDE)
+    jobs = Jobs(PYPYS, PACKAGES, EXCLUDE, INCLUDE)
     all_envs = list(jobs.generate())
     # travis allows max 200 jobs, but we need to count also the docker-image
     # and the pytest jobs
