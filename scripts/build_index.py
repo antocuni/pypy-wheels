@@ -6,7 +6,7 @@ class IndexBuilder(object):
     def __init__(self, wheeldir, outdir):
         self.wheeldir = py.path.local(wheeldir)
         self.outdir = py.path.local(outdir)
-        self.packages = set()
+        self.updated_packages = set()
 
     @classmethod
     def parse(cls, f):
@@ -17,7 +17,7 @@ class IndexBuilder(object):
         for whl in self.wheeldir.visit('*.whl'):
             print 'Collecting wheel:', whl.basename
             name, version = self.parse(whl)
-            self.packages.add(name)
+            self.updated_packages.add(name)
             d = self.outdir.join(name).ensure(dir=True)
             dst = d.join(whl.basename)
             if dst.check(file=False):
@@ -25,10 +25,15 @@ class IndexBuilder(object):
             else:
                 print '    already exists, skipping'
 
+    def all_packages(self):
+        for f in self.outdir.listdir():
+            if f.check(dir=True):
+                yield f.basename
+
     def build_index(self):
         print 'Building index files...'
-        self._write_index(self.outdir, 'PyPy Wheel Index', self.packages)
-        for pkg in self.packages:
+        self._write_index(self.outdir, 'PyPy Wheel Index', self.all_packages())
+        for pkg in self.updated_packages:
             d = self.outdir.join(pkg)
             wheels = [whl.basename for whl in d.listdir('*.whl')]
             self._write_index(d, 'Links for %s' % pkg, wheels)

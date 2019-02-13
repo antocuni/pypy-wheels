@@ -44,6 +44,11 @@ class TestIndexBuilder:
         w(src, 'numpy-1.1-bla.whl', 'BBB')
         w(src, 'numpy-1.2-bla.whl', 'CCC')
         #
+        # this is a dir which already exists in gh-pages but for which we
+        # didn't build any new wheel. We want to ensure that it's still linked
+        # in the index
+        dst.join('scipy').ensure(dir=True)
+        #
         builder = IndexBuilder(src, dst)
         builder.copy_wheels()
         builder.build_index()
@@ -52,7 +57,8 @@ class TestIndexBuilder:
         links = find_links(dst.join('index.html'))
         assert sorted(links) == [
             ('netifaces', 'netifaces'),
-            ('numpy', 'numpy')
+            ('numpy', 'numpy'),
+            ('scipy', 'scipy'),
         ]
         # check the index for numpy
         links = find_links(dst.join('numpy/index.html'))
