@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 # this is a helper to automatically generate the jobs for the .travis.yml file
 
 PYPYS = {
@@ -61,10 +63,10 @@ if __name__ == '__main__':
     all_envs = list(TRAVIS_JOBS.generate())
     # travis allows max 200 jobs, but we need to count also the docker-image
     # and the pytest jobs
-    print 'env:'
+    print('env:')
     for env in all_envs:
-        print '  - %s' % env
+        print('  - %s' % env)
 
     if len(all_envs) >= 198:
-        print
-        print 'WARNING! Too many jobs: %d' % len(all_envs)
+        print()
+        print('WARNING! Too many jobs: %d' % len(all_envs))
