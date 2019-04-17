@@ -4,13 +4,16 @@ set -e
 
 # install pypy into /opt/pypy*
 ALL_PYPYS=(
-    pypy-5.10.0-linux_x86_64-portable.tar.bz2
-    pypy3.5-5.10.0-linux_x86_64-portable.tar.bz2
+    # 6.0.0
     pypy-6.0.0-linux_x86_64-portable.tar.bz2
     pypy3.5-6.0.0-linux_x86_64-portable.tar.bz2
+    # 7.0.0
     pypy-7.0.0-linux_x86_64-portable.tar.bz2
     pypy3.5-7.0.0-linux_x86_64-portable.tar.bz2
     pypy3.6-7.0.0-alpha-20190209-linux_x86_64-portable.tar.bz2
+    # 7.1.1
+    pypy-7.1.1-linux_x86_64-portable.tar.bz2
+    pypy3.6-7.1.1-beta-linux_x86_64-portable.tar.bz2
 )
 
 function install_pypy() {
