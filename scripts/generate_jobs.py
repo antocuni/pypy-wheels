@@ -12,7 +12,7 @@ PACKAGES = [
     'numpy',
     'scipy',
     'cython',
-    'cryptography netifaces psutil',
+    'cryptography netifaces psutil gevent',
     'scipy',
     'pandas',
 ]
