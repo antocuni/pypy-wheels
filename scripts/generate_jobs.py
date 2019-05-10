@@ -13,7 +13,6 @@ PACKAGES = [
     'scipy',
     'cython',
     'cryptography netifaces psutil gevent',
-    'scipy',
     'pandas',
 ]
 
