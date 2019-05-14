@@ -50,6 +50,7 @@ Currently, we provide binary wheels for the following packages:
 - pandas
 - psutil
 - netifaces
+- xgboost
 
 If you want more packages, pull requests are welcome.
 

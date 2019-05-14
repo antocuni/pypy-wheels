@@ -14,6 +14,7 @@ PACKAGES = [
     'cython',
     'cryptography netifaces psutil gevent',
     'pandas',
+    'xgboost',
 ]
 
 # {package: (pypy, py)}
@@ -21,6 +22,7 @@ EXCLUDE = {
     'numpy': ('6.0.0', '*'),
     'scipy': ('6.0.0', '*'),
     'pandas': ('6.0.0', '*'),
+    'xgboost': ('6.0.0', '*'),
     }
 
 INCLUDE = [
