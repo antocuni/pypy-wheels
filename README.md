@@ -24,14 +24,14 @@ but they should work also on subsequent versions. To use them, you can invoke
 pip like this:
 
 ```
-$ pip install --extra-index https://antocuni.github.io/pypy-wheels/ubuntu numpy
+$ pip install --extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu numpy
 ```
 
 Or, in case you use a `requirements.txt` file, you can put the extra index
 option at the beginning:
 
 ```
---extra-index https://antocuni.github.io/pypy-wheels/ubuntu/
+--extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu/
 numpy
 scipy
 ```
