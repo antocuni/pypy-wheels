@@ -16,8 +16,13 @@ if [[ "$PYPY_VERSION" = "2.7" ]]
 then
     PYPY_NAME="pypy-$PYPY_VERSION"
 else
-    PYPY_NAME="pypy$PY-$PYPY_VERSION"
+    PYPY_NAME="pypy$PY_VERSION-$PYPY_VERSION"
 fi
+
+echo "PYPY_VERSION: ${PYPY_VERSION}"
+echo "PY_VERSION: ${PY_VERSION}"
+echo "PYPY_NAME: ${PYPY_NAME}"
+echo
 
 PYPY=/opt/$PYPY_NAME*/bin/pypy
 if [ -f $PYPY ]
