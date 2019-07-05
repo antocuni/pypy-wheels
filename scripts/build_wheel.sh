@@ -12,7 +12,7 @@ PKG=$4
 
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
 
-if [[ "$PYPY_VERSION" = "2.7" ]]
+if [[ "$PY_VERSION" = "2.7" ]]
 then
     PYPY_NAME="pypy-$PYPY_VERSION"
 else
@@ -27,7 +27,7 @@ echo
 PYPY=/opt/$PYPY_NAME*/bin/pypy
 if [ -f $PYPY ]
 then
-    echo "FOUND PYPY: $PYPY"
+    echo "FOUND PYPY:" $PYPY
 else
     echo "ERROR: PYPY does not exists: $PYPY"
     exit 1
