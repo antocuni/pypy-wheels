@@ -23,9 +23,9 @@ function _build_maybe() {
         docker build docker/$dir -t $image:$tag $extra_args || exit
         if [ "$TRAVIS_PULL_REQUEST" = "false" ]
         then
-            echo "skipping docker push because this is a PR"
-        else
             docker push $image
+        else
+            echo "skipping docker push because this is a PR"
         fi
     fi
 }
