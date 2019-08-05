@@ -48,7 +48,7 @@ class Jobs(object):
         return (ex_pypy in (pypy, '*') and
                 ex_py in (py, '*'))
 
-    def _generate(self):
+    def generate(self):
         all_pypys = sorted(self.pypys)
         for pkg in self.packages:
             for pypy in all_pypys:
@@ -57,14 +57,6 @@ class Jobs(object):
                         yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
         for pkg, pypy, py in self.include:
             yield 'PYPY="%s" PY="%s" PKG="%s"' % (pypy, py, pkg)
-
-    def generate(self):
-        for line in self._generate():
-            # this is a hackish workaround for this issue:
-            # https://github.com/numpy/numpy/issues/14147
-            if 'numpy' in line:
-                line += ' CFLAGS="--std=c99"'
-            yield line
 
 
 TRAVIS_JOBS = Jobs(PYPYS, PACKAGES, EXCLUDE, INCLUDE)
