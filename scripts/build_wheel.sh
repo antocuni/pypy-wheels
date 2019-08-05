@@ -33,6 +33,12 @@ else
     exit 1
 fi
 
+if [ "$PKG" = "numpy" ]
+then
+    # the recent versions of numpy requires a C99 compiler
+    export CFLAGS="--std=c99"
+fi
+
 # Compile the wheels, for all pypys found inside /opt/
 echo "Compiling wheel for $PKG"
 echo "TARGETDIR: $TARGETDIR"
