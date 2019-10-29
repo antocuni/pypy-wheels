@@ -3,7 +3,7 @@
 set -e
 
 # install pypy into /opt/pypy*
-ALL_PYPYS=(
+BITBUCKET_PYPYS=(
     # 6.0.0
     pypy-6.0.0-linux_x86_64-portable.tar.bz2
     pypy3.5-6.0.0-linux_x86_64-portable.tar.bz2
@@ -14,6 +14,12 @@ ALL_PYPYS=(
     # 7.1.1
     pypy-7.1.1-linux_x86_64-portable.tar.bz2
     pypy3.6-7.1.1-beta-linux_x86_64-portable.tar.bz2
+)
+
+GITHUB_PYPYS=(
+    # 7.2.0
+    pypy3.6-7.2.0
+    pypy-7.2.0
 )
 
 function install_pypy() {
@@ -36,9 +42,15 @@ function install_pypy() {
     echo
 }
 
-for PYPY in "${ALL_PYPYS[@]}"
+for PYPY in "${BITBUCKET_PYPYS[@]}"
 do
     URL=https://bitbucket.org/squeaky/portable-pypy/downloads/$PYPY
     install_pypy $PYPY $URL
+done
+
+for PYPY in "${GITHUB_PYPYS[@]}"
+do
+    URL=https://github.com/squeaky-pl/portable-pypy/releases/download/$PYPY/$PYPY-linux_x86_64-portable.tar.bz2
+    install_pypy $PYPY-linux_x86_64-portable.tar.bz2 $URL
 done
 
