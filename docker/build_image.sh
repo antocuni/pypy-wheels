@@ -9,10 +9,8 @@ function tag_exists() {
 }
 
 function _build_maybe() {
-    local dir=$1
-    local image=$2
-    local tag=$3
-    local extra_args="${@:4}"
+    local image=$1
+    local tag=$2
 
     echo "Checking $image:$tag"
     if tag_exists $image $tag
@@ -20,7 +18,7 @@ function _build_maybe() {
         echo "  image already on docker hub, nothing to do"
     else
         echo "  image does not exist, building it"
-        docker build docker/$dir -t $image:$tag $extra_args || exit
+        docker build . -t $image:$tag || exit
         if [ "$TRAVIS_PULL_REQUEST" = "false" ]
         then
             docker push $image
@@ -30,9 +28,4 @@ function _build_maybe() {
     fi
 }
 
-# centos6-based build:
-#_build_maybe base pypywheels/centos6-base $BASETAG
-#_build_maybe image pypywheels/centos6 $TAG --build-arg baseimage=pypywheels/centos6-base:$BASETAG
-
-# ubuntu-based build
-_build_maybe image pypywheels/ubuntu14.04 $TAG --build-arg baseimage=ubuntu:14.04
+_build_maybe pypywheels/image $TAG
