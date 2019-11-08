@@ -60,13 +60,10 @@ echo "wheels copied:"
 find $TARGETDIR -name '*.whl'
 
 # Bundle external shared libraries into the wheels
-#
-# XXX: auditwheel repair doesn't work because of this bug:
-# https://github.com/NixOS/patchelf/issues/128
-# try again when it's fixed
-# echo
-# echo "Running audiwheel..."
-# echo
-# for whl in wheelhouse/*.whl; do
-#     auditwheel repair --plat linux_x86_64  "$whl" -w $TARGETDIR
-# done
+PLAT=manylinux2010_x86_64
+echo
+echo "Running audiwheel..."
+echo
+for whl in wheelhouse/*.whl; do
+    auditwheel repair --plat $PLAT "$whl" -w $TARGETDIR
+done
