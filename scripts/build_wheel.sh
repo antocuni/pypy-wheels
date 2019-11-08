@@ -10,7 +10,7 @@ PYPY_VERSION=$2
 PY_VERSION=$3
 PKG=$4
 
-TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
+TARGETDIR=/io/wheelhouse/$TARGET
 PYPY_NAME="pypy$PY_VERSION-$PYPY_VERSION"
 
 echo "PYPY_VERSION: ${PYPY_VERSION}"
@@ -53,17 +53,11 @@ $PYPY -m pip install $EXTRA numpy
 # create the actual wheel
 $PYPY -m pip wheel $EXTRA -w wheelhouse "$PKG"
 
-# copy the wheels to the final directory
-mkdir -p $TARGETDIR
-cp wheelhouse/*.whl $TARGETDIR
-echo "wheels copied:"
-find $TARGETDIR -name '*.whl'
-
 # Bundle external shared libraries into the wheels
 PLAT=manylinux2010_x86_64
 echo
 echo "Running audiwheel..."
 echo
 for whl in wheelhouse/*.whl; do
-    auditwheel repair --plat $PLAT "$whl" -w $TARGETDIR
+    auditwheel repair "$whl" --plat $PLAT -w $TARGETDIR
 done
