@@ -11,20 +11,14 @@ PY_VERSION=$3
 PKG=$4
 
 TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
-
-if [[ "$PY_VERSION" = "2.7" ]]
-then
-    PYPY_NAME="pypy-$PYPY_VERSION"
-else
-    PYPY_NAME="pypy$PY_VERSION-$PYPY_VERSION"
-fi
+PYPY_NAME="pypy$PY_VERSION-$PYPY_VERSION"
 
 echo "PYPY_VERSION: ${PYPY_VERSION}"
 echo "PY_VERSION: ${PY_VERSION}"
 echo "PYPY_NAME: ${PYPY_NAME}"
 echo
 
-PYPY=/opt/$PYPY_NAME*/bin/pypy
+PYPY=/opt/pypy/$PYPY_NAME*/bin/pypy
 if [ -f $PYPY ]
 then
     echo "FOUND PYPY:" $PYPY
