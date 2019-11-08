@@ -28,4 +28,4 @@ function _build_maybe() {
     fi
 }
 
-_build_maybe pypywheels/image $TAG
+_build_maybe pypywheels/pypywheels $TAG
