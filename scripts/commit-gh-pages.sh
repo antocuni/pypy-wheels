@@ -47,10 +47,13 @@ TR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
 echo "current git branch: $TR_BRANCH"
 if [ "$TR_BRANCH" == "master" ]
 then
+    echo "FIXME! REVERT THIS CHANGE AND PUSH ONLY IF MASTER!"
+    exit 1
     echo "pushing changes to $SSH_REPO"
     git push $SSH_REPO $TARGET_BRANCH
 else
-    echo "NOT pushing, since it's not master"
+    #echo "NOT pushing, since it's not master"
+    git push $SSH_REPO $TARGET_BRANCH
 fi
 
 # workaround for this travis bug:
