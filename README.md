@@ -6,51 +6,52 @@ This repo contains PyPy binary wheels for some popular packages. This is still
 highly experimental. There is a travis cron job which runs daily, to ensure
 that we build new wheels if there are new releases of such packages.
 
-We continuously build wheels for the three latest PyPy releases, which
+We continuously build wheels for the two latest PyPy releases, which
 currently are:
 
+  - PyPy 7.2.0
+
   - PyPy 7.1.1
-
-  - PyPy 7.0
-
-  - PyPy 6.0
 
 Older version of PyPy are still partially supported, to avoid breaking your
 builds: the exising wheels will not be deleted, but when a package release a
 new version the wheel will **not** be updated.
 
-Currently, we provide only wheels for Ubuntu: they are built on Ubuntu 14.04
-but they should work also on subsequent versions. To use them, you can invoke
-pip like this:
+We build manylinux2010[1] wheels, which means that they should work on any
+reasonably recent linux distribution. Note that the ``pip`` which is shipped
+by ``pypy <=7.2.0`` is very old and thus does not support ``manyinux2010``
+wheels. Make sure to upgrade your ``pip`` as a first step.
+
+
+To use the wheels, you can invoke pip like this:
 
 ```
-$ pip install --extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu numpy
+$ pip install -U pip
+$ pip install --extra-index-url https://antocuni.github.io/pypy-wheels/manylinux2010 numpy
 ```
 
 Or, in case you use a `requirements.txt` file, you can put the extra index
 option at the beginning:
 
 ```
---extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu/
+--extra-index-url https://antocuni.github.io/pypy-wheels/manylinux2010/
 numpy
 scipy
 ```
 
-Please note that these are **not** manylinux[1] wheels: as such, they do not
-contain all the required shared libraries, which need to be installed using
-`apt-get`. In particular, `numpy` and `scipy` require `libatlas`, `libblas`
-and `liblapack`.
-
 [1] https://github.com/pypa/manylinux
 
-Currently, we provide binary wheels for the following packages:
+At the moment of writing, we provide binary wheels for the following packages:
 
 - numpy
 - scipy
+- cython
 - pandas
+- xgboost
+- cryptography
 - psutil
 - netifaces
-- xgboost
+- gevent
 
 If you want more packages, pull requests are welcome.
 
@@ -62,27 +63,15 @@ the packages might or might not work correctly on PyPy. If you encounter a
 bug, do **not** open an issue on this repo as this is not the right place:
 please report it to the PyPy and/or the specific package issue trackers.
 
-## Why not manylinux1 wheels?
+## Older Ubuntu-based images
 
-Currently, it is not possible to build PyPy on centos5, which is required for
-manylinux1. Moreover, there are other issues to be fixed fist, such as this
-one: https://bitbucket.org/pypy/pypy/issues/2617/
+Before switching to manylinux2010, this repo used to built ubuntu-based
+wheels. These are still available at the old address, to avoid breaking your
+build unexpectedly. However, note that new versions of the packages will NOT
+be built.
 
-## TODO / help wanted
+To install the old wheels, use:
 
-In case you are interested in helping, pull requests are welcome. Here is a
-random list of features which would be nice to have:
-   
-1. If you want to build a new package, just add it `build_wheels.sh` and make
-   sure it compiles correctly. You might need to `apt-get install` more
-   packages in `docker/image/install_packages.sh`.
-   
-2. If you want to build wheels for `OS/X` or other linux distros, feel free to
-   do so :)
-   
-3. As written above, `manylinux1` cannot work. However, I tried to produce
-   `"somelinux"` wheels which were suppposed to work on most linux systems, by
-   building them on CentOS 6 (as opposed to manylinux's CentOS 5) and run
-   `auditwheel repair` on them. However, I got hit by this bug:
-   https://github.com/NixOS/patchelf/issues/128 . Feel free to give it a try
-   :)
+```
+$ pip install --extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu numpy
+```
