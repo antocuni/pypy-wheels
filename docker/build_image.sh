@@ -18,7 +18,7 @@ function _build_maybe() {
         echo "  image already on docker hub, nothing to do"
     else
         echo "  image does not exist, building it"
-        docker build . -t $image:$tag || exit
+        docker build docker -t $image:$tag || exit
         if [ "$TRAVIS_PULL_REQUEST" = "false" ]
         then
             docker push $image
