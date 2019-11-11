@@ -67,11 +67,15 @@ please report it to the PyPy and/or the specific package issue trackers.
 
 Before switching to manylinux2010, this repo used to built ubuntu-based
 wheels. These are still available at the old address, to avoid breaking your
-build unexpectedly. However, note that new versions of the packages will NOT
-be built.
+build unexpectedly. New versions of the wheels will be built for a while in
+the `legacy-ubuntu`[2] branch.  Note that scipy wheels are no longer supported
+on that branch, so if you need a binary scipy wheel for pypy, you should use
+the manylinux ones.
 
 To install the old wheels, use:
 
 ```
 $ pip install --extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu numpy
 ```
+
+[2] https://github.com/antocuni/pypy-wheels/tree/legacy-ubuntu
