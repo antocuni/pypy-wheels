@@ -52,3 +52,7 @@ then
 else
     echo "NOT pushing, since we are not on the legacy-ubuntu branch"
 fi
+
+# workaround for this travis bug:
+# https://github.com/travis-ci/travis-ci/issues/8082
+ssh-agent -k
