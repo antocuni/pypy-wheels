@@ -49,10 +49,14 @@ if [ "$TR_BRANCH" == "legacy-ubuntu" ]
 then
     echo "pushing changes to $SSH_REPO"
     git push $SSH_REPO $TARGET_BRANCH
+    EXIT_CODE=$?
 else
     echo "NOT pushing, since we are not on the legacy-ubuntu branch"
+    EXIT_CODE=0
 fi
 
 # workaround for this travis bug:
 # https://github.com/travis-ci/travis-ci/issues/8082
 ssh-agent -k
+
+exit $EXIT_CODE
