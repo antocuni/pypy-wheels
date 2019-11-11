@@ -25,12 +25,14 @@ option at the beginning:
 ```
 --extra-index-url https://antocuni.github.io/pypy-wheels/ubuntu/
 numpy
-scipy
 ```
 
 Please note that these are **not** manylinux[1] wheels: as such, they do not
 contain all the required shared libraries, which need to be installed using
-`apt-get`. In particular, `numpy` and `scipy` require `libatlas`, `libblas`
-and `liblapack`.
+`apt-get`. In particular, `numpy` requires `libopenblas`.
+
+Note that `scipy` is NOT supported, because newer versions of `scipy` do not
+build against the ancient `libopenblas` which is shipped by ubuntu 14.04. If
+you want a `scipy` wheel for PyPy, you should switch to manylinux wheels.
 
 [1] https://github.com/pypa/manylinux

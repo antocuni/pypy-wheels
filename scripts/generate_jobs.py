@@ -9,7 +9,7 @@ PYPYS = {
 
 PACKAGES = [
     'numpy',
-    'scipy',
+#    'scipy', # scipy doesn't work with ubuntu libopenblas
     'cython',
     'cryptography netifaces psutil gevent',
     'pandas',
