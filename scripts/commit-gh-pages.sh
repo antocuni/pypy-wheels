@@ -51,11 +51,18 @@ then
     exit 1
     echo "pushing changes to $SSH_REPO"
     git push $SSH_REPO $TARGET_BRANCH
+    EXIT_CODE=$?
 else
     #echo "NOT pushing, since it's not master"
+    #EXIT_CODE=0
+
+    # remove me after merge to master
     git push $SSH_REPO $TARGET_BRANCH
+    EXIT_CODE=$?
 fi
 
 # workaround for this travis bug:
 # https://github.com/travis-ci/travis-ci/issues/8082
 ssh-agent -k
+
+exit $EXIT_CODE
