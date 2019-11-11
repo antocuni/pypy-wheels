@@ -45,12 +45,12 @@ git commit -m "update index:
 # https://graysonkoonce.com/getting-the-current-branch-name-during-a-pull-request-in-travis-ci/
 TR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
 echo "current git branch: $TR_BRANCH"
-if [ "$TR_BRANCH" == "master" ]
+if [ "$TR_BRANCH" == "legacy-ubuntu" ]
 then
     echo "pushing changes to $SSH_REPO"
     git push $SSH_REPO $TARGET_BRANCH
 else
-    echo "NOT pushing, since it's not master"
+    echo "NOT pushing, since we are not on the legacy-ubuntu branch"
 fi
 
 # workaround for this travis bug:
