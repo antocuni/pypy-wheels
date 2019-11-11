@@ -13,7 +13,7 @@ PACKAGES = [
     'cython',
     'cryptography netifaces psutil gevent',
     'pandas',
-    'xgboost',
+#    'xgboost', # depends on scipy
 ]
 
 # {package: (pypy, py)}

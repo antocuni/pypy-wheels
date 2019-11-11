@@ -61,7 +61,3 @@ env:
   - PYPY="7.1.1" PY="3.6" PKG="pandas"
   - PYPY="7.2.0" PY="2.7" PKG="pandas"
   - PYPY="7.2.0" PY="3.6" PKG="pandas"
-  - PYPY="7.1.1" PY="2.7" PKG="xgboost"
-  - PYPY="7.1.1" PY="3.6" PKG="xgboost"
-  - PYPY="7.2.0" PY="2.7" PKG="xgboost"
-  - PYPY="7.2.0" PY="3.6" PKG="xgboost"
