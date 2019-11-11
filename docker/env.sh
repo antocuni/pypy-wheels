@@ -5,5 +5,4 @@ function _tag() {
     cat $(git ls-files $1) | md5sum | head -c 8
 }
 
-BASETAG=`_tag docker/base`
-TAG=`_tag docker/image`
+TAG=`_tag docker`

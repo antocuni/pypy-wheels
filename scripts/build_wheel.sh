@@ -10,21 +10,15 @@ PYPY_VERSION=$2
 PY_VERSION=$3
 PKG=$4
 
-TARGETDIR=/pypy-wheels/wheelhouse/$TARGET
-
-if [[ "$PY_VERSION" = "2.7" ]]
-then
-    PYPY_NAME="pypy-$PYPY_VERSION"
-else
-    PYPY_NAME="pypy$PY_VERSION-$PYPY_VERSION"
-fi
+TARGETDIR=/io/wheelhouse/$TARGET
+PYPY_NAME="pypy$PY_VERSION-$PYPY_VERSION"
 
 echo "PYPY_VERSION: ${PYPY_VERSION}"
 echo "PY_VERSION: ${PY_VERSION}"
 echo "PYPY_NAME: ${PYPY_NAME}"
 echo
 
-PYPY=/opt/$PYPY_NAME*/bin/pypy
+PYPY=/opt/pypy/$PYPY_NAME*/bin/pypy
 if [ -f $PYPY ]
 then
     echo "FOUND PYPY:" $PYPY
@@ -59,20 +53,11 @@ $PYPY -m pip install $EXTRA numpy
 # create the actual wheel
 $PYPY -m pip wheel $EXTRA -w wheelhouse "$PKG"
 
-# copy the wheels to the final directory
-mkdir -p $TARGETDIR
-cp wheelhouse/*.whl $TARGETDIR
-echo "wheels copied:"
-find $TARGETDIR -name '*.whl'
-
 # Bundle external shared libraries into the wheels
-#
-# XXX: auditwheel repair doesn't work because of this bug:
-# https://github.com/NixOS/patchelf/issues/128
-# try again when it's fixed
-# echo
-# echo "Running audiwheel..."
-# echo
-# for whl in wheelhouse/*.whl; do
-#     auditwheel repair --plat linux_x86_64  "$whl" -w $TARGETDIR
-# done
+PLAT=manylinux2010_x86_64
+echo
+echo "Running audiwheel..."
+echo
+for whl in wheelhouse/*.whl; do
+    auditwheel repair "$whl" --plat $PLAT -w $TARGETDIR
+done

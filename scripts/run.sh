@@ -2,12 +2,9 @@
 
 . docker/env.sh
 
-# build wheels on centos6
-#docker run -it --rm -v `pwd`:/pypy-wheels pypywheels/centos6:$TAG /pypy-wheels/scripts/build_wheels.sh
-
 # build wheels on ubuntu
 echo "RUNNING DOCKER"
-docker run -it --rm -v `pwd`:/pypy-wheels pypywheels/ubuntu14.04:$TAG /pypy-wheels/scripts/build_wheel.sh ubuntu $PYPY $PY $PKG
+docker run -it --rm -v `pwd`:/io pypywheels/pypywheels:$TAG /io/scripts/build_wheel.sh manylinux2010 $PYPY $PY $PKG
 STATUS=$?
 echo "docker run exit status: $STATUS"
 echo "end of run.sh"
