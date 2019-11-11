@@ -3,7 +3,6 @@ from __future__ import print_function
 # this is a helper to automatically generate the jobs for the .travis.yml file
 
 PYPYS = {
-    '7.0.0': ['2.7', '3.5', '3.6'],
     '7.1.1': ['2.7', '3.6'],
     '7.2.0': ['2.7', '3.6'],
     }
@@ -22,10 +21,6 @@ EXCLUDE = {
     }
 
 INCLUDE = [
-    ('numpy==1.14.3',  '7.1.1', '2.7'),
-    ('pandas==0.20.3', '7.1.1', '2.7'),
-    ('scipy==1.1.0',   '7.1.1', '2.7'),
-    ('cython==0.28.2', '7.1.1', '2.7'),
     ]
 
 class Jobs(object):
