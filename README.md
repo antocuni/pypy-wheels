@@ -9,9 +9,9 @@ that we build new wheels if there are new releases of such packages.
 We continuously build wheels for the two latest PyPy releases, which
 currently are:
 
-  - PyPy 7.3.0
+  - PyPy 7.3.1
 
-  - PyPy 7.2.0
+  - PyPy 7.3.0
 
 Older version of PyPy are still partially supported, to avoid breaking your
 builds: the exising wheels will not be deleted, but when a package release a
