@@ -15,7 +15,9 @@ PACKAGES = [
     'numpy',
     'scipy',
     'cython',
-    'cryptography netifaces gevent',
+    'cryptography',
+    'netifaces',
+    'gevent',
     'psutil',
     'pandas',
 #    'xgboost',
@@ -25,13 +27,11 @@ PACKAGES = [
 EXCLUDE = {
     'scipy': ('7.2.0', '3.6'),
     'psutil': ('7.2.0', '2.7'),
+    'gevent': ('*', '3.6'),
     }
 
 INCLUDE = [
-    ('numpy==1.14.3',  '7.3.0', '2.7'),
-    ('pandas==0.20.3', '7.3.0', '2.7'),
-    ('scipy==1.1.0',   '7.3.0', '2.7'),
-    ('cython==0.28.2', '7.3.0', '2.7'),
+    ## ('numpy==1.14.3',  '7.3.1', '2.7'),
     ]
 
 class Jobs(object):
