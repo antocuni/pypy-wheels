@@ -3,7 +3,7 @@ from __future__ import print_function
 # this is a helper to automatically generate the jobs for the .travis.yml file
 
 PYPYS = {
-    '7.3.0': ['2.7', '3.6'],
+    '7.2.0': ['2.7', '3.6'],
     '7.3.1': ['2.7', '3.6'],
     }
 
@@ -22,6 +22,7 @@ PACKAGES = [
 
 # {package: (pypy, py)}
 EXCLUDE = {
+    'scipy': ('7.2.0', '3.6'),
     }
 
 INCLUDE = [
