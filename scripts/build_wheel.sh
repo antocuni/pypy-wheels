@@ -61,7 +61,7 @@ echo "Running audiwheel..."
 echo
 for whl in wheelhouse/*.whl; do
     case $whl in
-        cffi-*.whl)
+        */cffi-*.whl)
             echo "Skipping cffi: $whl"
             ;;
         *-linux_x86_64.whl)
