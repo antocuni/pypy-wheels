@@ -7,13 +7,17 @@ PYPYS = {
     '7.3.1': ['2.7', '3.6'],
     }
 
+
+# xgboost is commented out because the resulting wheel is >100MB, which is the
+# maximum file size limit for hosting files on github pages. Probably we
+# should switch to another way to host the wheels :(
 PACKAGES = [
     'numpy',
     'scipy',
     'cython',
     'cryptography netifaces psutil gevent',
     'pandas',
-    'xgboost',
+#    'xgboost',
 ]
 
 # {package: (pypy, py)}
