@@ -36,6 +36,7 @@ fi
 # Compile the wheels, for all pypys found inside /opt/
 echo "Compiling wheel for $PKG"
 echo "TARGETDIR: $TARGETDIR"
+mkdir -p $TARGETDIR
 echo
 cd
 
@@ -59,5 +60,16 @@ echo
 echo "Running audiwheel..."
 echo
 for whl in wheelhouse/*.whl; do
-    auditwheel repair "$whl" --plat $PLAT -w $TARGETDIR
+    case $whl in
+        *-linux_x86_64.whl)
+            # platform-dependent wheel, repair it
+            echo "Repairing $whl"
+            auditwheel repair "$whl" --plat $PLAT -w $TARGETDIR
+            ;;
+        *)
+            # platform-independent wheel, copy it verbatim
+            echo "No need to repair $whl, copy it to $TARGETDIR"
+            cp $whl $TARGETDIR
+            ;;
+    esac
 done
