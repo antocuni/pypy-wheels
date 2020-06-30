@@ -52,7 +52,7 @@ EXTRA="--extra-index https://antocuni.github.io/pypy-wheels/$TARGET"
 $PYPY -m pip install $EXTRA numpy
 
 # create the actual wheel
-$PYPY -m pip wheel $EXTRA -w wheelhouse "$PKG"
+$PYPY -m pip wheel $EXTRA -w wheelhouse $PKG
 
 # Bundle external shared libraries into the wheels
 PLAT=manylinux2010_x86_64
