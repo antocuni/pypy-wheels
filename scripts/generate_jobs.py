@@ -20,6 +20,7 @@ PACKAGES = [
     'gevent',
     'psutil',
     'pandas',
+    'scikit-learn',
 #    'xgboost',
 ]
 

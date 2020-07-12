@@ -74,3 +74,7 @@ env:
   - PYPY="7.2.0" PY="3.6" PKG="pandas"
   - PYPY="7.3.1" PY="2.7" PKG="pandas"
   - PYPY="7.3.1" PY="3.6" PKG="pandas"
+  - PYPY="7.2.0" PY="2.7" PKG="scikit-learn"
+  - PYPY="7.2.0" PY="3.6" PKG="scikit-learn"
+  - PYPY="7.3.1" PY="2.7" PKG="scikit-learn"
+  - PYPY="7.3.1" PY="3.6" PKG="scikit-learn"

@@ -47,6 +47,7 @@ At the moment of writing, we provide binary wheels for the following packages:
 - scipy
 - cython
 - pandas
+- scikit-learn
 - xgboost
 - cryptography
 - psutil
