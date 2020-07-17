@@ -74,3 +74,5 @@ env:
   - PYPY="7.2.0" PY="3.6" PKG="pandas"
   - PYPY="7.3.1" PY="2.7" PKG="pandas"
   - PYPY="7.3.1" PY="3.6" PKG="pandas"
+  - PYPY="7.3.1" PY="3.6" PKG="pandas==0.24.2"
+  - PYPY="7.3.1" PY="3.6" PKG="scipy==1.2.1"
