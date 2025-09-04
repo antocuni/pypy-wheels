@@ -103,3 +103,15 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# pytest
+.pytest_cache/
+
+# Claude Code
+.claude/*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
